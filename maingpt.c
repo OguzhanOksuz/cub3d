@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/06 19:01:09 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:14:00 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,22 @@ void draw_line(Game *game, int x, double height, int color)
 	// mlx_pixel_put(game->mlx, game->win, x, y, color);
 }
 
+void clearimg(Game *game)
+{
+	for (size_t i = 0; i < WIDTH; i++)
+	{
+		for (size_t j = 0; j < HEIGHT; j++)
+		{
+			draw_line(game, i, j, 0x00000000);
+		}
+		
+	}
+	
+}
+
 void raycast(Game *game)
 {
+	clearimg(game);
 	double angle_step = FOV / WIDTH;
 	double angle = game->player.dir - FOV / 2;
 	for (int x = 0; x < WIDTH; x++, angle += angle_step)
@@ -99,6 +113,8 @@ void raycast(Game *game)
 		draw_line(game, x, wall_height, 0x00FF0000);
 	}
 }
+
+
 
 int update(Game *game);
 
@@ -201,7 +217,7 @@ int key_hook(int key, Game *game)
 	
 	mlx_clear_window(game->mlx, game->win);
     mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
-    raycast(game);
+	raycast(game);
 
     return (0);
 }
