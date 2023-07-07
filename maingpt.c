@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/07 16:09:06 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:37:49 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int map[MAP_SIZE][MAP_SIZE] = {
     {1,0,0,1,0,0,1,0,0,1},
     {1,0,0,1,0,0,0,0,0,1},
     {1,0,0,1,0,0,0,0,0,1},
-    {1,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,1},
     {1,1,1,1,1,1,1,1,1,1}
 };
@@ -98,6 +98,7 @@ void raycast(Game *game)
     double angle = game->player.dir - FOV / 2;
     for (int x = 0; x < WIDTH; x++, angle += angle_step)
     {
+		int color;
         double dirX = cos(angle);
         double dirY = sin(angle);
         
@@ -162,6 +163,11 @@ void raycast(Game *game)
             else if (map[mapY][mapX] > 0) 
             {
                 hit = 1;
+
+				if (side == 0) // East or west wall.
+            	color = dirX > 0 ? 0x00FF0000 : 0x0000FF00; // Red for east, green for west.
+        		else // North or south wall.
+            	color = dirY > 0 ? 0x000000FF : 0x00FFFF00; // Blue for north, yellow for south.
             }
         }
 
@@ -174,9 +180,32 @@ void raycast(Game *game)
 
         // Correct the "fishbowl effect" by multiplying the wall distance by cos(player_dir - ray_dir)
         perpWallDist *= cos(game->player.dir - angle);
-        
+
+		// int color;
+        // if (side == 0) // East or west wall.
+        //     color = dirX > 0 ? 0x00FF0000 : 0x0000FF00; // Red for east, green for west.
+        // else // North or south wall.
+        //     color = dirY > 0 ? 0x000000FF : 0x00FFFF00; // Blue for north, yellow for south.
+
         int lineHeight = (int)(HEIGHT / perpWallDist);
-        draw_line(game, x, lineHeight, 0x00FF0000);
+        draw_line(game, x, lineHeight, color);
+
+		//FLOOR CEILING
+			
+        // Determine the start and end of the wall in this column.
+        int start = (HEIGHT - lineHeight) / 2;
+        int end = (HEIGHT + lineHeight) / 2;
+
+        // Draw the ceiling from 0 to the start of the wall.
+        for (int y = 0; y < start; y++)
+            my_mlx_pixel_put(&game->img, x, y, 0x00AAAAFF); // Blueish color for the ceiling.
+
+        // Draw the wall.
+        //draw_line(game, x, lineHeight, 0x00FF0000);
+
+        // Draw the floor from the end of the wall to the bottom of the screen.
+        for (int y = end; y < HEIGHT; y++)
+            my_mlx_pixel_put(&game->img, x, y, 0x00660000); // Brownish color for the floor.
     }
 }
 
