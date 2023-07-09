@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/06 14:36:57 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/09 17:28:31 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,57 @@ typedef enum
 }				errType;
 
 
-////test
+#include "mlx/mlx.h"
+#include "math.h"
+#include <stdlib.h>
 
 #include <stdio.h>
-#include <math.h>
 
-#define MAP_WIDTH 10
-#define MAP_HEIGHT 10
-//#define FOV 60
-#define PROJECTION_PLANE 30
+#define WIDTH 800
+#define HEIGHT 600
+#define MAP_SIZE 10
+#define FOV M_PI / 3
+#define RAY_STEP 0.01
 
-int map[MAP_HEIGHT][MAP_WIDTH] = {
+typedef struct s_data
+{
+	void *img;
+	char *addr;
+	int bits_per_pixel;
+	int line_length;
+	int endian;
+} img_data;
+
+typedef struct t_data
+{
+	void *img;
+	char *addr;
+	int bits_per_pixel;
+	int line_length;
+	int endian;
+	int width;
+	int height;
+} txt_data;
+
+typedef struct
+{
+	double x;
+	double y;
+	double dir;
+} Player;
+
+typedef struct
+{
+	void *mlx;
+	void *win;
+	Player player;
+	img_data img;
+	//int map[MAP_SIZE][MAP_SIZE];
+
+	txt_data textures[4];
+} Game;
+
+int map[MAP_SIZE][MAP_SIZE] = {
     {1,1,1,1,1,1,1,1,1,1},
     {1,0,0,0,0,1,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,1},
@@ -53,16 +93,12 @@ int map[MAP_HEIGHT][MAP_WIDTH] = {
     {1,0,0,1,0,0,1,0,0,1},
     {1,0,0,1,0,0,0,0,0,1},
     {1,0,0,1,0,0,0,0,0,1},
-    {1,0,0,1,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,1},
     {1,1,1,1,1,1,1,1,1,1}
 };
 
-double playerX = 5.0;
-double playerY = 5.0;
-double playerDir = 0.0;
-///
 
-///////
+
 
 #endif

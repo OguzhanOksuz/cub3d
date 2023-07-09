@@ -6,72 +6,12 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/07 20:06:06 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/09 17:33:02 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx/mlx.h"
-#include "math.h"
-#include <stdlib.h>
+#include "cub3d.h"
 
-#include <stdio.h>
-
-#define WIDTH 800
-#define HEIGHT 600
-#define MAP_SIZE 10
-#define FOV M_PI / 3
-#define RAY_STEP 0.01
-
-typedef struct s_data
-{
-	void *img;
-	char *addr;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-} img_data;
-
-typedef struct t_data
-{
-	void *img;
-	char *addr;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-	int width;
-	int height;
-} txt_data;
-
-typedef struct
-{
-	double x;
-	double y;
-	double dir;
-} Player;
-
-typedef struct
-{
-	void *mlx;
-	void *win;
-	Player player;
-	img_data img;
-	//int map[MAP_SIZE][MAP_SIZE];
-
-	txt_data textures[4];
-} Game;
-
-int map[MAP_SIZE][MAP_SIZE] = {
-    {1,1,1,1,1,1,1,1,1,1},
-    {1,0,0,0,0,1,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,1,0,0,0,0,0,1},
-    {1,0,0,1,0,0,1,0,0,1},
-    {1,0,0,1,0,0,0,0,0,1},
-    {1,0,0,1,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,1,1,1,1,1,1,1,1,1}
-};
 
 void my_mlx_pixel_put(img_data *data, int x, int y, int color)
 {
@@ -181,6 +121,14 @@ void raycast(Game *game)
             }
         }
 		int lineHeight = 0;
+
+		double wallX;
+        if (side == 0) 
+            wallX = game->player.y + perpWallDist * dirY;
+        else
+            wallX = game->player.x + perpWallDist * dirX;
+        wallX -= floor(wallX);
+		
         if (hit)
         {
             // Calculate distance of perpendicular ray (Euclidean distance will give fisheye effect!)
@@ -210,12 +158,15 @@ void raycast(Game *game)
             else            texX = (int)(game->player.x + perpWallDist * dirX) % texture->width;
 
             // Loop through every pixel of the stripe/screen column
+
+			texX = (int)(wallX * (double)(texture->width));
+            if(side == 0 && dirX > 0) texX = texture->width - texX - 1;
+            if(side == 1 && dirY < 0) texX = texture->width - texX - 1;
             for (int y = drawStart; y < drawEnd; y++)
             {
-                int d = y * 256 - HEIGHT * 128 + lineHeight * 128;  // 256 and 128 factors to avoid floats
+                int d = y * 256 - HEIGHT * 128 + lineHeight * 128;
                 int texY = ((d * texture->height) / lineHeight) / 256;
-                int color = ((int *)(texture->addr))[texY * texture->width + texX];
-
+                int color = ((int *)(texture->addr))[texY * texture->line_length / 4 + texX];
                 my_mlx_pixel_put(&game->img, x, y, color);
             }
 
@@ -241,6 +192,160 @@ void raycast(Game *game)
     }
 }
 
+
+int update(Game *game);
+
+int key_hook(int key, Game *game)
+{
+    printf("KEY: %d\n", key);
+    if (key == 53) // Escape key
+        exit(0);
+    double dir_x = cos(game->player.dir);
+    double dir_y = sin(game->player.dir);
+    double speed = 0.1;
+	printf("\n\n--OMG Stats--\n\n");
+	printf("dir = %f\n", game->player.dir);
+	printf("\n-----XYZ------\n");
+	printf("dir_x = %f\n", dir_x);
+	printf("cos = %f\n",cos(game->player.dir));
+	printf("dir_y = %f\n", dir_y);
+	printf("sin = %f\n",sin(game->player.dir));
+	printf("\n-----PPlayer------\n");
+	printf("player_x = %f\n", game->player.x);
+	printf("player_y = %f\n", game->player.y);
+    if (key == 13) // W
+    {
+        game->player.x += dir_x * speed;
+        game->player.y += dir_y * speed;
+    }
+    else if (key == 1) // S
+    {
+        game->player.x -= dir_x * speed;
+        game->player.y -= dir_y * speed;
+    }
+    else if (key == 0) // A
+    {
+        game->player.x += dir_y * speed;
+        game->player.y -= dir_x * speed;
+    }
+    else if (key == 2) // D
+    {
+        game->player.x -= dir_y * speed;
+        game->player.y += dir_x * speed;
+    }
+    else if (key == 123) // Left arrow key
+    {
+        game->player.dir -= 0.1;
+        if (game->player.dir < 0) // Keep the angle between 0 and 2π
+            game->player.dir += 2 * M_PI;
+    }
+    else if (key == 124) // Right arrow key
+    {
+        game->player.dir += 0.1;
+        if (game->player.dir > 2 * M_PI) // Keep the angle between 0 and 2π
+            game->player.dir -= 2 * M_PI;
+    }
+	printf("player_x = %f\n", game->player.x);
+	printf("player_y = %f\n", game->player.y);
+	
+	mlx_clear_window(game->mlx, game->win);
+	raycast(game);
+    mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+
+    return (0);
+}
+
+
+
+int main(void)
+{
+	Game game;
+	game.mlx = mlx_init();
+	game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Raycaster");
+	game.player.x = 2;
+	game.player.y = 2;
+	game.player.dir = M_PI / 4;
+
+	game.img.img = mlx_new_image(game.mlx, 800, 600);
+	game.img.addr = mlx_get_data_addr(game.img.img, &game.img.bits_per_pixel, &game.img.line_length,
+									  &game.img.endian);
+
+	game.textures[0].img = mlx_xpm_file_to_image(game.mlx, "textures/NO.xpm", &game.textures[0].width, &game.textures[0].height);
+	game.textures[0].addr = mlx_get_data_addr(game.textures[0].img, &game.textures[0].bits_per_pixel, &game.textures[0].line_length, &game.textures[0].endian);
+	
+	game.textures[1].img = mlx_xpm_file_to_image(game.mlx, "textures/SO.xpm", &game.textures[1].width, &game.textures[1].height);
+	game.textures[1].addr = mlx_get_data_addr(game.textures[1].img, &game.textures[1].bits_per_pixel, &game.textures[1].line_length, &game.textures[1].endian);
+
+	game.textures[2].img = mlx_xpm_file_to_image(game.mlx, "textures/EA.xpm", &game.textures[2].width, &game.textures[2].height);
+	game.textures[2].addr = mlx_get_data_addr(game.textures[2].img, &game.textures[2].bits_per_pixel, &game.textures[2].line_length, &game.textures[2].endian);
+
+	game.textures[3].img = mlx_xpm_file_to_image(game.mlx, "textures/WE.xpm", &game.textures[3].width, &game.textures[3].height);
+	game.textures[3].addr = mlx_get_data_addr(game.textures[3].img, &game.textures[3].bits_per_pixel, &game.textures[3].line_length, &game.textures[3].endian);
+	
+	//mlx_loop_hook(game.mlx, update, &game);
+	mlx_hook(game.win, 2, 0, key_hook, &game);
+	raycast(&game);
+	mlx_loop(game.mlx);
+	return (0);
+}
+
+
+int key_hookHit(int key, Game *game)
+{
+    printf("KEY: %d\n", key);
+    if (key == 53) // Escape key
+        exit(0);
+    double dir_x = cos(game->player.dir);
+    double dir_y = sin(game->player.dir);
+    double speed = 0.1;
+
+    double new_x, new_y;
+    if (key == 13) // W
+    {
+        new_x = game->player.x + dir_x * speed;
+        new_y = game->player.y + dir_y * speed;
+    }
+    else if (key == 1) // S
+    {
+        new_x = game->player.x - dir_x * speed;
+        new_y = game->player.y - dir_y * speed;
+    }
+    else if (key == 0) // A
+    {
+        new_x = game->player.x + dir_y * speed;
+        new_y = game->player.y - dir_x * speed;
+    }
+    else if (key == 2) // D
+    {
+        new_x = game->player.x - dir_y * speed;
+        new_y = game->player.y + dir_x * speed;
+    }
+    else if (key == 123) // Left arrow key
+    {
+        game->player.dir -= 0.1;
+        if (game->player.dir < 0) // Keep the angle between 0 and 2π
+            game->player.dir += 2 * M_PI;
+    }
+    else if (key == 124) // Right arrow key
+    {
+        game->player.dir += 0.1;
+        if (game->player.dir > 2 * M_PI) // Keep the angle between 0 and 2π
+            game->player.dir -= 2 * M_PI;
+    }
+
+    // If the player's new position is not inside a wall and is within map bounds, allow the move
+    if (new_x >= 0 && new_x < MAP_SIZE && new_y >= 0 && new_y < MAP_SIZE && map[(int)new_y][(int)new_x] == 0)
+    {
+        game->player.x = new_x;
+        game->player.y = new_y;
+    }
+
+    mlx_clear_window(game->mlx, game->win);
+    raycast(game);
+    mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+
+    return (0);
+}
 void raycastColored(Game *game)
 {
     clearimg(game);
@@ -353,159 +458,6 @@ void raycastColored(Game *game)
         for (int y = end; y < HEIGHT; y++)
             my_mlx_pixel_put(&game->img, x, y, 0x00660000); // Brownish color for the floor.
     }
-}
-
-int update(Game *game);
-
-int key_hook(int key, Game *game)
-{
-    printf("KEY: %d\n", key);
-    if (key == 53) // Escape key
-        exit(0);
-    double dir_x = cos(game->player.dir);
-    double dir_y = sin(game->player.dir);
-    double speed = 0.1;
-	printf("\n\n--OMG Stats--\n\n");
-	printf("dir = %f\n", game->player.dir);
-	printf("\n-----XYZ------\n");
-	printf("dir_x = %f\n", dir_x);
-	printf("cos = %f\n",cos(game->player.dir));
-	printf("dir_y = %f\n", dir_y);
-	printf("sin = %f\n",sin(game->player.dir));
-	printf("\n-----PPlayer------\n");
-	printf("player_x = %f\n", game->player.x);
-	printf("player_y = %f\n", game->player.y);
-    if (key == 13) // W
-    {
-        game->player.x += dir_x * speed;
-        game->player.y += dir_y * speed;
-    }
-    else if (key == 1) // S
-    {
-        game->player.x -= dir_x * speed;
-        game->player.y -= dir_y * speed;
-    }
-    else if (key == 0) // A
-    {
-        game->player.x += dir_y * speed;
-        game->player.y -= dir_x * speed;
-    }
-    else if (key == 2) // D
-    {
-        game->player.x -= dir_y * speed;
-        game->player.y += dir_x * speed;
-    }
-    else if (key == 123) // Left arrow key
-    {
-        game->player.dir -= 0.1;
-        if (game->player.dir < 0) // Keep the angle between 0 and 2π
-            game->player.dir += 2 * M_PI;
-    }
-    else if (key == 124) // Right arrow key
-    {
-        game->player.dir += 0.1;
-        if (game->player.dir > 2 * M_PI) // Keep the angle between 0 and 2π
-            game->player.dir -= 2 * M_PI;
-    }
-	printf("player_x = %f\n", game->player.x);
-	printf("player_y = %f\n", game->player.y);
-	
-	mlx_clear_window(game->mlx, game->win);
-	raycast(game);
-    mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
-
-    return (0);
-}
-
-
-int key_hookHit(int key, Game *game)
-{
-    printf("KEY: %d\n", key);
-    if (key == 53) // Escape key
-        exit(0);
-    double dir_x = cos(game->player.dir);
-    double dir_y = sin(game->player.dir);
-    double speed = 0.1;
-
-    double new_x, new_y;
-    if (key == 13) // W
-    {
-        new_x = game->player.x + dir_x * speed;
-        new_y = game->player.y + dir_y * speed;
-    }
-    else if (key == 1) // S
-    {
-        new_x = game->player.x - dir_x * speed;
-        new_y = game->player.y - dir_y * speed;
-    }
-    else if (key == 0) // A
-    {
-        new_x = game->player.x + dir_y * speed;
-        new_y = game->player.y - dir_x * speed;
-    }
-    else if (key == 2) // D
-    {
-        new_x = game->player.x - dir_y * speed;
-        new_y = game->player.y + dir_x * speed;
-    }
-    else if (key == 123) // Left arrow key
-    {
-        game->player.dir -= 0.1;
-        if (game->player.dir < 0) // Keep the angle between 0 and 2π
-            game->player.dir += 2 * M_PI;
-    }
-    else if (key == 124) // Right arrow key
-    {
-        game->player.dir += 0.1;
-        if (game->player.dir > 2 * M_PI) // Keep the angle between 0 and 2π
-            game->player.dir -= 2 * M_PI;
-    }
-
-    // If the player's new position is not inside a wall and is within map bounds, allow the move
-    if (new_x >= 0 && new_x < MAP_SIZE && new_y >= 0 && new_y < MAP_SIZE && map[(int)new_y][(int)new_x] == 0)
-    {
-        game->player.x = new_x;
-        game->player.y = new_y;
-    }
-
-    mlx_clear_window(game->mlx, game->win);
-    raycast(game);
-    mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
-
-    return (0);
-}
-int main(void)
-{
-	Game game;
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Raycaster");
-	game.player.x = 2;
-	game.player.y = 2;
-	game.player.dir = M_PI / 4;
-
-	game.img.img = mlx_new_image(game.mlx, 800, 600);
-	game.img.addr = mlx_get_data_addr(game.img.img, &game.img.bits_per_pixel, &game.img.line_length,
-									  &game.img.endian);
-
-	game.textures[0].img = mlx_xpm_file_to_image(game.mlx, "textures/NO.xpm", &game.textures[0].width, &game.textures[0].height);
-	game.textures[0].addr = mlx_get_data_addr(game.textures[0].img, &game.textures[0].bits_per_pixel, &game.textures[0].line_length, &game.textures[0].endian);
-	
-	game.textures[1].img = mlx_xpm_file_to_image(game.mlx, "textures/SO.xpm", &game.textures[1].width, &game.textures[1].height);
-	game.textures[1].addr = mlx_get_data_addr(game.textures[1].img, &game.textures[1].bits_per_pixel, &game.textures[1].line_length, &game.textures[1].endian);
-
-	game.textures[2].img = mlx_xpm_file_to_image(game.mlx, "textures/EA.xpm", &game.textures[2].width, &game.textures[2].height);
-	game.textures[2].addr = mlx_get_data_addr(game.textures[2].img, &game.textures[2].bits_per_pixel, &game.textures[2].line_length, &game.textures[2].endian);
-
-	game.textures[3].img = mlx_xpm_file_to_image(game.mlx, "textures/WE.xpm", &game.textures[3].width, &game.textures[3].height);
-	game.textures[3].addr = mlx_get_data_addr(game.textures[3].img, &game.textures[3].bits_per_pixel, &game.textures[3].line_length, &game.textures[3].endian);
-	
-	
-	
-	//mlx_loop_hook(game.mlx, update, &game);
-	mlx_hook(game.win, 2, 0, key_hook, &game);
-	raycast(&game);
-	mlx_loop(game.mlx);
-	return (0);
 }
 
 
