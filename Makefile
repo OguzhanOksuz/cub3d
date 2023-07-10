@@ -5,9 +5,9 @@ CC		=	gcc
 CFLAGS	=	-fsanitize=address
 FRMS	=	-framework OpenGL -framework AppKit
 
-SRCS =	maingpt.c
+SRCS =	main.c
 
-OBJS =	maingpt.o
+OBJS =	main.o
 
 BSRCS = bonus/check_utils.c bonus/check_utils2.c \
 		bonus/check.c bonus/draw_map.c \

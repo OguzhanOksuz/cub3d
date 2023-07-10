@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/10 19:11:15 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:25:41 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,15 @@ typedef struct {
     int hit;
     int side;
 } Ray;
+
+typedef enum {
+    RED = 0x00FF0000,      // Red for east
+    GREEN = 0x0000FF00,    // Green for west
+    BLUE = 0x000000FF,     // Blue for north
+    YELLOW = 0x00FFFF00,   // Yellow for south
+    CEILING_BLUE = 0x00AAAAFF, // Blueish color for the ceiling
+    FLOOR_BROWN = 0x00660000   // Brownish color for the floor
+} Color;
 
 
 
