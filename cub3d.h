@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/09 17:28:31 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:11:15 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,44 @@ int map[MAP_SIZE][MAP_SIZE] = {
     {1,1,1,1,1,1,1,1,1,1}
 };
 
+
+typedef struct s_point
+{
+	double			x;
+	double			y;
+}					t_point;
+
+typedef struct s_ray
+{
+	t_point	ray_dir;
+	t_point	side_dist;
+	t_point	delta_dist;
+	
+	int		map_x;
+	int		map_y;
+	
+	double	perp_wall_dist;
+	
+	int		step_x;
+	int		step_y;
+	
+	int		side;
+	double	ratio;
+	int		hit;
+	
+	int		color;
+	
+}			t_ray;
+
+typedef struct {
+    double x;
+    double y;
+    double dirX;
+    double dirY;
+    double perpWallDist;
+    int hit;
+    int side;
+} Ray;
 
 
 
