@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/10 19:25:41 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:33:51 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,7 @@ typedef struct
 	txt_data textures[4];
 } Game;
 
-int map[MAP_SIZE][MAP_SIZE] = {
-    {1,1,1,1,1,1,1,1,1,1},
-    {1,0,0,0,0,1,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,1,0,0,0,0,0,1},
-    {1,0,0,1,0,0,1,0,0,1},
-    {1,0,0,1,0,0,0,0,0,1},
-    {1,0,0,1,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,1,1,1,1,1,1,1,1,1}
-};
-
+int map[MAP_SIZE][MAP_SIZE]; //gllobal map
 
 typedef struct s_point
 {
@@ -146,6 +134,19 @@ typedef enum {
     FLOOR_BROWN = 0x00660000   // Brownish color for the floor
 } Color;
 
+//RAYCAST
+void raycast(Game *game);
 
+int is_boundary_violated(t_ray *ray);
+void ray_step(t_ray *ray);
+void draw_floor_ceiling(Game *game,int x, int lineHeight);
+void calculate_perpetual_and_color(Game *game, t_ray *ray, double angle);
+void calculate_step_and_dist(Game *game, t_ray *ray);
+void init_ray(Game *game, t_ray *ray, double angle);
+
+//DRAW
+void my_mlx_pixel_put(img_data *data, int x, int y, int color);
+void draw_line(Game *game, int x, double height, int color);
+void clearimg(Game *game);
 
 #endif
