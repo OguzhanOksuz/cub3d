@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/11 20:33:51 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/11 23:24:47 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ typedef struct s_ray
 	int		hit;
 	
 	int		color;
+
+	txt_data *texture;
+	int tex_x;
 	
 }			t_ray;
 
