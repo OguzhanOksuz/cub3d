@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/11 20:33:09 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:43:20 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,10 @@ int key_hook(int key, Game *game)
 	mlx_clear_window(game->mlx, game->win);
 	raycast(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->textures[0].img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->textures[1].img, 64, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->textures[2].img, 128, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->textures[3].img, 192, 0);
 
 	return (0);
 }
@@ -134,9 +138,11 @@ int main(void)
 	game.img.addr = mlx_get_data_addr(game.img.img, &game.img.bits_per_pixel, &game.img.line_length,
 									  &game.img.endian);
 
+	
+
 	game.textures[0].img = mlx_xpm_file_to_image(game.mlx, "textures/NO.xpm", &game.textures[0].width, &game.textures[0].height);
 	game.textures[0].addr = mlx_get_data_addr(game.textures[0].img, &game.textures[0].bits_per_pixel, &game.textures[0].line_length, &game.textures[0].endian);
-
+	
 	game.textures[1].img = mlx_xpm_file_to_image(game.mlx, "textures/SO.xpm", &game.textures[1].width, &game.textures[1].height);
 	game.textures[1].addr = mlx_get_data_addr(game.textures[1].img, &game.textures[1].bits_per_pixel, &game.textures[1].line_length, &game.textures[1].endian);
 
@@ -145,6 +151,8 @@ int main(void)
 
 	game.textures[3].img = mlx_xpm_file_to_image(game.mlx, "textures/WE.xpm", &game.textures[3].width, &game.textures[3].height);
 	game.textures[3].addr = mlx_get_data_addr(game.textures[3].img, &game.textures[3].bits_per_pixel, &game.textures[3].line_length, &game.textures[3].endian);
+
+	
 
 	mlx_hook(game.win, 2, 0, key_hook, &game);
 	raycast(&game);

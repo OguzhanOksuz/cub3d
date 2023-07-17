@@ -336,3 +336,76 @@ void raycast(Game *game)
             my_mlx_pixel_put(&game->img, x, y, 0x00660000); // Brownish color for the floor.
     }
 }
+
+            // How much to increase the texture coordinate per screen pixel
+      double step = 1.0 * texHeight / lineHeight;
+      // Starting texture coordinate
+      double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
+      for(int y = drawStart; y<drawEnd; y++)
+      {
+        // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+        int texY = (int)texPos & (texHeight - 1);
+        texPos += step;
+        Uint32 color = texture[texNum][texHeight * texY + texX];
+        //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+        if(side == 1) color = (color >> 1) & 8355711;
+        buffer[y][x] = color;
+      }
+
+/texturing calculations
+      int texNum = worldMap[mapX][mapY] - 1; //1 subtracted from it so that texture 0 can be used!
+
+      //calculate value of wallX
+      double wallX; //where exactly the wall was hit
+      if (side == 0) wallX = posY + perpWallDist * rayDirY;
+      else           wallX = posX + perpWallDist * rayDirX;
+      wallX -= floor((wallX));
+
+      //x coordinate on the texture
+      int texX = int(wallX * double(texWidth));
+      if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
+      if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1; 
+
+
+
+// This function takes in a pointer to the Game state, a pointer to a ray, and an angle
+void calculate_perpetual_and_color(Game *game, t_ray *ray, double angle) 
+{
+    // If the ray hits a wall and the side of the hit is 0 (meaning the wall is facing a certain direction, possibly East-West)
+    if (ray->hit && ray->side == 0)
+    {
+        // Calculate the perpendicular distance to the wall hit by the ray
+        // This formula takes into account the ray's direction and the player's position
+        ray->perp_wall_dist = (ray->map_x - game->player.x + (1 - ray->step_x) / 2) / ray->ray_dir.x;
+
+        // Determine the x coordinate of the texture based on player's position and the ray direction
+        ray->tex_x = (int)(game->player.y + ray->perp_wall_dist * ray->ray_dir.y) % game->textures[ray->map_x % 4].width;
+    }
+    // If the ray hits a wall (regardless of the side hit)
+    else if (ray->hit)
+    {
+        // Calculate the perpendicular distance to the wall hit by the ray
+        ray->perp_wall_dist = (ray->map_y - game->player.y + (1 - ray->step_y) / 2) / ray->ray_dir.y;
+
+        // Determine the x coordinate of the texture based on player's position and the ray direction
+        ray->tex_x = (int)(game->player.x + ray->perp_wall_dist * ray->ray_dir.x) % game->textures[ray->map_y % 4].width;
+    }
+    // If the ray did not hit any wall, set the distance to be the HEIGHT constant
+    else
+        ray->perp_wall_dist = HEIGHT;
+
+    // Correct for the "fishbowl effect". The distortion which makes straight walls look curved
+    // This is because rays at the edge of the player's field of view have longer distance to the wall than those in the center
+    // To correct this, multiply the distance by the cosine of the difference between the player's direction and the ray angle
+    ray->perp_wall_dist *= cos(game->player.dir - angle);
+
+    // Determine the texture to use for the wall hit by the ray
+    // The actual texture depends on the side hit and the step directions of the ray
+    ray->texture = &game->textures[(ray->side + ray->step_x + ray->step_y) % 4];
+    
+    // This line is commented out, but if it were active it would put the ray's texture to the game window at position (0, 64)
+    // mlx_put_image_to_window(game->mlx, game->win, ray->texture->img, 0, 64);
+}
+
+
+	  

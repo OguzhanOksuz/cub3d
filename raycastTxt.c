@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/12 06:32:54 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:54:26 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,42 @@ void calculate_step_and_dist(Game *game, t_ray *ray)
 //CHANGED
 void calculate_perpetual_and_color(Game *game, t_ray *ray, double angle) 
 {
+	double wallX = 0;
+	
 	if (ray->hit && ray->side == 0)
 	{
 		ray->perp_wall_dist = (ray->map_x - game->player.x + (1 - ray->step_x) / 2) / ray->ray_dir.x;
-		ray->tex_x = (int)(game->player.y + ray->perp_wall_dist * ray->ray_dir.y) % game->textures[ray->map_x % 4].width;
+		//ray->tex_x = (int)(game->player.y + ray->perp_wall_dist * ray->ray_dir.y) % game->textures[ray->map_x % 4].width;
+		
+		wallX = game->player.y + ray->perp_wall_dist * ray->ray_dir.y;
+		wallX -=floor(wallX);
+		ray->tex_x = (int)(wallX * (double)(game->textures[ray->map_x % 4].width));
+		if (ray->ray_dir.x > 0)
+			ray->tex_x = game->textures[ray->map_x % 4].width - ray->tex_x - 1;
 	}
 	else if (ray->hit)
 	{
 		ray->perp_wall_dist = (ray->map_y - game->player.y + (1 - ray->step_y) / 2) / ray->ray_dir.y;
-		ray->tex_x = (int)(game->player.x + ray->perp_wall_dist * ray->ray_dir.x) % game->textures[ray->map_y % 4].width;
+		//ray->tex_x = (int)(game->player.x + ray->perp_wall_dist * ray->ray_dir.x) % game->textures[ray->map_y % 4].width;
+		
+		wallX = game->player.x + ray->perp_wall_dist * ray->ray_dir.x;
+		wallX -=floor(wallX);
+		ray->tex_x = (int)(wallX * (double)(game->textures[ray->map_x % 4].width));
+		if (ray->ray_dir.x < 0)
+			ray->tex_x = game->textures[ray->map_x % 4].width - ray->tex_x - 1;
 	}
 	else
 		ray->perp_wall_dist = HEIGHT;
 
 	// Correct the "fishbowl effect"
 	ray->perp_wall_dist *= cos(game->player.dir - angle);
-	
+
 	// Assign the texture based on the wall hit
 	ray->texture = &game->textures[(ray->side + ray->step_x + ray->step_y) % 4];
+	//printf("TEX_X : %d\n", ray->tex_x);
+	
+	
+	//mlx_put_image_to_window(game->mlx, game->win, ray->texture->img, 0, 64);
 }
 
 void draw_floor_ceiling(Game *game,int x, int lineHeight)
@@ -158,11 +176,57 @@ void draw_textured_line(Game *game, t_ray *ray, int x, int lineHeight)
 	int start = (HEIGHT - lineHeight) / 2;
 	int end = (HEIGHT + lineHeight) / 2;
 
+	double step 1.0 * ray->texture->height / lineHeight;
+	double texPos = (start - h / 2 + lineHeight / 2) * step;
+	for (int y = start; y < end; y++)
+	{
+		int d = y * 256 - HEIGHT * 128 + lineHeight * 128;
+		int tex_y = ((d * ray->texture->height) / lineHeight) / 256;
+		
+		// Calculate the offset for the pixel in the texture
+		int offset = tex_y * ray->texture->line_length + ray->tex_x * (ray->texture->bits_per_pixel / 8);
+		
+		// Extract the color using the offset
+		unsigned int color = *(unsigned int *)(ray->texture->addr + offset);
+		
+		my_mlx_pixel_put(&game->img, x, y, color);
+	}
+}
+
+void draw_textured_line2(Game *game, t_ray *ray, int x, int lineHeight)
+{
+	int start = (HEIGHT - lineHeight) / 2;
+	int end = (HEIGHT + lineHeight) / 2;
+
+	for (int y = start; y < end; y++)
+	{
+		int d = y * 256 - HEIGHT * 128 + lineHeight * 128;
+		int tex_y = ((d * ray->texture->height) / lineHeight) / 256;
+		
+		// Calculate the offset for the pixel in the texture
+		int offset = tex_y * ray->texture->line_length + ray->tex_x * (ray->texture->bits_per_pixel / 8);
+		
+		// Extract the color using the offset
+		unsigned int color = *(unsigned int *)(ray->texture->addr + offset);
+		
+		my_mlx_pixel_put(&game->img, x, y, color);
+	}
+}
+
+
+
+void draw_textured_line3(Game *game, t_ray *ray, int x, int lineHeight)
+{
+	int start = (HEIGHT - lineHeight) / 2;
+	int end = (HEIGHT + lineHeight) / 2;
+
 	for (int y = start; y < end; y++)
 	{
 		int d = y * 256 - HEIGHT * 128 + lineHeight * 128;
 		int tex_y = ((d * ray->texture->height) / lineHeight) / 256;
 		int color = ray->texture->addr[ray->texture->line_length * tex_y + ray->tex_x * (ray->texture->bits_per_pixel / 8)];
+
+	
 		my_mlx_pixel_put(&game->img, x, y, color);
 	}
 }

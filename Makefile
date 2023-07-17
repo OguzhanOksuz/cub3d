@@ -2,7 +2,7 @@ NAME	=	cub3d
 BNAME	=	so_long_bonus
 
 CC		=	gcc
-CFLAGS	=	-fsanitize=address
+CFLAGS	=	-g 
 FRMS	=	-framework OpenGL -framework AppKit
 
 SRCS =	main.c raycastTxt.c
