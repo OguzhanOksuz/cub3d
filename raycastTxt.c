@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/17 18:54:26 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/17 19:51:42 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,8 +170,8 @@ void raycast(Game *game)
 		draw_floor_ceiling(game, x, lineHeight);
 	}
 }
-
-void draw_textured_line(Game *game, t_ray *ray, int x, int lineHeight)
+//yorumdan bak
+void draw_textured_lineLDEV(Game *game, t_ray *ray, int x, int lineHeight)
 {
 	int start = (HEIGHT - lineHeight) / 2;
 	int end = (HEIGHT + lineHeight) / 2;
@@ -193,7 +193,7 @@ void draw_textured_line(Game *game, t_ray *ray, int x, int lineHeight)
 	}
 }
 
-void draw_textured_line2(Game *game, t_ray *ray, int x, int lineHeight)
+void draw_textured_line(Game *game, t_ray *ray, int x, int lineHeight)
 {
 	int start = (HEIGHT - lineHeight) / 2;
 	int end = (HEIGHT + lineHeight) / 2;
