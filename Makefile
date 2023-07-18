@@ -6,7 +6,7 @@
 #    By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 16:15:07 by mkaraden          #+#    #+#              #
-#    Updated: 2023/07/18 14:49:41 by mkaraden         ###   ########.fr        #
+#    Updated: 2023/07/18 15:52:22 by mkaraden         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,9 @@ SRC_DIR	= src
 OBJ_DIR	= obj
 BIN_DIR	= bin
 
-SRC =	main/main.c				raycast/raycast.c		raycast/raycast_calculate.c		raycast/raycast_draw.c	\
-		raycast/raycast_utils.c	
+SRC =	main/main.c		main/hook.c		raycast/raycast.c	\
+		raycast/raycast_calculate.c		raycast/raycast_draw.c	raycast/raycast_utils.c	\
+		
 		
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

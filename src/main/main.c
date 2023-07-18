@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/18 14:50:36 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:33:39 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,73 +25,6 @@ extern int map[MAP_SIZE][MAP_SIZE] = {
     {1,1,1,1,1,1,1,1,1,1}
 };
 
-
-
-void	print_stats(Game *game)
-{
-	printf("\n\n--OMG Stats--\n\n");
-	printf("dir = %f\n", game->player.dir);
-	printf("\n-----XYZ------\n");
-	printf("dir_x = %f\n", cos(game->player.dir));
-	printf("dir_y = %f\n", sin(game->player.dir));
-	printf("\n-----PPlayer------\n");
-	printf("player_x = %f\n", game->player.x);
-	printf("player_y = %f\n", game->player.y);
-}
-
-int key_hook(int key, Game *game)
-{
-	printf("KEY: %d\n", key);
-	if (key == 53) // Escape key
-		exit(0);
-	double dir_x = cos(game->player.dir);
-	double dir_y = sin(game->player.dir);
-	double speed = 0.1;
-	if (key == 13) // W
-	{
-		game->player.x += dir_x * speed;
-		game->player.y += dir_y * speed;
-	}
-	else if (key == 1) // S
-	{
-		game->player.x -= dir_x * speed;
-		game->player.y -= dir_y * speed;
-	}
-	else if (key == 0) // A
-	{
-		game->player.x += dir_y * speed;
-		game->player.y -= dir_x * speed;
-	}
-	else if (key == 2) // D
-	{
-		game->player.x -= dir_y * speed;
-		game->player.y += dir_x * speed;
-	}
-	else if (key == 123) // Left arrow key
-	{
-		game->player.dir -= 0.1;
-		if (game->player.dir < 0) // Keep the angle between 0 and 2π
-			game->player.dir += 2 * M_PI;
-	}
-	else if (key == 124) // Right arrow key
-	{
-		game->player.dir += 0.1;
-		if (game->player.dir > 2 * M_PI) // Keep the angle between 0 and 2π
-			game->player.dir -= 2 * M_PI;
-	}
-	
-	print_stats(game);
-	mlx_clear_window(game->mlx, game->win);
-	raycast(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->win, game->textures[0].img, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->win, game->textures[1].img, 64, 0);
-	mlx_put_image_to_window(game->mlx, game->win, game->textures[2].img, 128, 0);
-	mlx_put_image_to_window(game->mlx, game->win, game->textures[3].img, 192, 0);
-
-	return (0);
-}
-
 int main(void)
 {
 	Game game;
@@ -106,18 +39,33 @@ int main(void)
 									  &game.img.endian);
 
 	
-
-	game.textures[0].img = mlx_xpm_file_to_image(game.mlx, "assests/textures/NO.xpm", &game.textures[0].width, &game.textures[0].height);
-	game.textures[0].addr = mlx_get_data_addr(game.textures[0].img, &game.textures[0].bits_per_pixel, &game.textures[0].line_length, &game.textures[0].endian);
 	
-	game.textures[1].img = mlx_xpm_file_to_image(game.mlx, "assests/textures/SO.xpm", &game.textures[1].width, &game.textures[1].height);
-	game.textures[1].addr = mlx_get_data_addr(game.textures[1].img, &game.textures[1].bits_per_pixel, &game.textures[1].line_length, &game.textures[1].endian);
+	char *(txt[]) =
+	{
 
-	game.textures[2].img = mlx_xpm_file_to_image(game.mlx, "assests/textures/EA.xpm", &game.textures[2].width, &game.textures[2].height);
-	game.textures[2].addr = mlx_get_data_addr(game.textures[2].img, &game.textures[2].bits_per_pixel, &game.textures[2].line_length, &game.textures[2].endian);
+		"assests/textures/KU.xpm",
+ 		"assests/textures/GU.xpm",
+  		"assests/textures/DO.xpm",
+  		"assests/textures/BA.xpm",	
+  		"assests/textures/brick.xpm",
+		"assests/textures/NO.xpm",
+ 		"assests/textures/SO.xpm",
+  		"assests/textures/EA.xpm",
+  		"assests/textures/WE.xpm"
+	
+	};
+	
+	game.textures[NORTH].img = mlx_xpm_file_to_image(game.mlx, txt[NORTH], &game.textures[0].width, &game.textures[0].height);
+	game.textures[NORTH].addr = mlx_get_data_addr(game.textures[0].img, &game.textures[0].bits_per_pixel, &game.textures[0].line_length, &game.textures[0].endian);
+	
+	game.textures[SOUTH].img = mlx_xpm_file_to_image(game.mlx, txt[SOUTH], &game.textures[1].width, &game.textures[1].height);
+	game.textures[SOUTH].addr = mlx_get_data_addr(game.textures[1].img, &game.textures[1].bits_per_pixel, &game.textures[1].line_length, &game.textures[1].endian);
 
-	game.textures[3].img = mlx_xpm_file_to_image(game.mlx, "assests/textures/WE.xpm", &game.textures[3].width, &game.textures[3].height);
-	game.textures[3].addr = mlx_get_data_addr(game.textures[3].img, &game.textures[3].bits_per_pixel, &game.textures[3].line_length, &game.textures[3].endian);
+	game.textures[EAST].img = mlx_xpm_file_to_image(game.mlx, txt[EAST], &game.textures[2].width, &game.textures[2].height);
+	game.textures[EAST].addr = mlx_get_data_addr(game.textures[2].img, &game.textures[2].bits_per_pixel, &game.textures[2].line_length, &game.textures[2].endian);
+
+	game.textures[WEST].img = mlx_xpm_file_to_image(game.mlx, txt[WEST], &game.textures[3].width, &game.textures[3].height);
+	game.textures[WEST].addr = mlx_get_data_addr(game.textures[3].img, &game.textures[3].bits_per_pixel, &game.textures[3].line_length, &game.textures[3].endian);
 
 	
 

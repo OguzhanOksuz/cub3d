@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/18 14:05:19 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:22:50 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,18 @@ void raycast(Game *game)
 	{
 		init_ray(game, &ray, angle);
 		calculate_step_and_dist(game, &ray);
-		
+			
 		while (ray.hit == 0)
 		{
 			ray_step(&ray);
 			if (is_boundary_violated(&ray) || map[ray.map_y][ray.map_x] > 0)
 				ray.hit = 1;
 		}
-
+		
 		calculate_perpetual(game, &ray, angle);
 		determine_texture(game, &ray, angle);
 		calculate_texture_x(game, &ray, angle);
 
-		
 		int lineHeight = (int)(HEIGHT / ray.perp_wall_dist);
 		
 		draw_textured_line(game, &ray, x, lineHeight);
@@ -44,9 +43,7 @@ void raycast(Game *game)
 	}
 }
 
-
-
-//bir step ileri
+//take one step
 void ray_step(t_ray *ray)
 {
 	if (ray->side_dist.x < ray->side_dist.y)

@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/18 14:46:44 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:06:42 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ typedef enum
 	EAST,
 	WEST,
 }				directions;
+
+typedef enum
+{
+	KEY_W = 13,
+	KEY_A = 0,
+	KEY_S = 1,
+	KEY_D = 2,
+	ARR_L = 123,
+	ARR_R = 124,
+}				keys;
 
 
 #include "math.h"
@@ -144,6 +154,15 @@ typedef enum {
     FLOOR_BROWN = 0x00660000   // Brownish color for the floor
 } Color;
 
+
+//-------------MAIN-----------------------//
+
+//hook
+int key_hook(int key, Game *game);
+
+//debug
+void	print_stats(Game *game);
+void	print_textures(Game *game);
 //-------------RAYCAST--------------------//
 
 
