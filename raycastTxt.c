@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/17 19:51:42 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/18 13:23:57 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ void calculate_perpetual_and_color(Game *game, t_ray *ray, double angle)
 	}
 	else
 		ray->perp_wall_dist = HEIGHT;
+	
+	if (ray->side == 0 && ray->ray_dir.x > 0)
+    ray->tex_x = game->textures[ray->map_x % 4].width - ray->tex_x - 1;
+	else if (ray->side == 1 && ray->ray_dir.y < 0)
+    ray->tex_x = game->textures[ray->map_y % 4].width - ray->tex_x - 1;
 
 	// Correct the "fishbowl effect"
 	ray->perp_wall_dist *= cos(game->player.dir - angle);
@@ -90,6 +95,18 @@ void calculate_perpetual_and_color(Game *game, t_ray *ray, double angle)
 	// Assign the texture based on the wall hit
 	ray->texture = &game->textures[(ray->side + ray->step_x + ray->step_y) % 4];
 	//printf("TEX_X : %d\n", ray->tex_x);
+
+	if(ray->side == 0) { // If the ray hit a wall on the x-axis (East/West wall)
+    if(ray->ray_dir.x > 0) // Check the direction of the ray
+        ray->texture = &game->textures[EAST];
+    else
+        ray->texture = &game->textures[WEST];
+} else { // If the ray hit a wall on the y-axis (North/South wall)
+    if(ray->ray_dir.y > 0) // Check the direction of the ray
+        ray->texture = &game->textures[NORTH];
+    else
+        ray->texture = &game->textures[SOUTH];
+}
 	
 	
 	//mlx_put_image_to_window(game->mlx, game->win, ray->texture->img, 0, 64);
@@ -171,7 +188,7 @@ void raycast(Game *game)
 	}
 }
 //yorumdan bak
-void draw_textured_lineLDEV(Game *game, t_ray *ray, int x, int lineHeight)
+/*void draw_textured_lineLDEV(Game *game, t_ray *ray, int x, int lineHeight)
 {
 	int start = (HEIGHT - lineHeight) / 2;
 	int end = (HEIGHT + lineHeight) / 2;
@@ -191,7 +208,7 @@ void draw_textured_lineLDEV(Game *game, t_ray *ray, int x, int lineHeight)
 		
 		my_mlx_pixel_put(&game->img, x, y, color);
 	}
-}
+}*/
 
 void draw_textured_line(Game *game, t_ray *ray, int x, int lineHeight)
 {

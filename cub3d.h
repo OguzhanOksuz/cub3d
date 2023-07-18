@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/11 23:24:47 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/18 13:19:07 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ typedef enum
 	ERROR_CHAR,
 	ERROR_WALLS,
 }				errType;
+
+typedef enum
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+}				directions;
 
 
 #include "mlx/mlx.h"
