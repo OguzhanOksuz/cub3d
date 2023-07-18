@@ -5,72 +5,62 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/26 16:15:07 by mkaraden          #+#    #+#              #
-#    Updated: 2023/07/18 14:49:41 by mkaraden         ###   ########.fr        #
+#    Created: 2023/07/18 14:22:53 by mkaraden          #+#    #+#              #
+#    Updated: 2023/07/18 14:27:06 by mkaraden         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME	=	cub3d
+BNAME	=	so_long_bonus
 
-
-AR	= ar rcs
-RM	= rm -f
-
-CC		= gcc
-CFLAGS	= -I ./include/ -fsanitize=address
-CDEBUG	= -g
+CC		=	gcc
+CFLAGS	=	-g 
 FRMS	=	-framework OpenGL -framework AppKit
 
+SRCS =	main.c raycast.c raycast_calculate.c raycast_utils.c raycast_draw.c
 
+OBJS =	obj/main.o obj/raycast.o obj/raycast_calculate.o obj/raycast_utils.o obj/raycast_draw.o
 
-SRC_DIR	= src
-OBJ_DIR	= obj
-BIN_DIR	= bin
+BSRCS = 
+BOBJS	=	
+ARCS = gnl/get_next_line.a mlx/libmlx.a
 
-SRC =	main/main.c				raycast/raycast.c		raycast/raycast_calculate.c		raycast/raycast_draw.c	\
-		raycast/raycast_utils.c	
-		
+-----------------------------
 
-OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
-
-ARC = ./src/gnl/get_next_line.a mlx/libmlx.a
-
-
-BIN		= cub3d
-NAME	= $(BIN_DIR)/$(BIN)
 
 
 all: $(NAME)
 
-$(NAME): $(OBJ) | $(BIN_DIR)
-	@cd ./$(SRC_DIR)/gnl && $(MAKE)
+bonus: $(BNAME) 
+
+$(BNAME): $(BOBJS)
+	@cd ./gnl && $(MAKE)
 	@echo "Gnl is compiled."
 	@cd ./mlx && $(MAKE)
-	@$(CC) $(CFLAGS) $(OBJ) $(ARC) $(FRMS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(BOBJS) $(ARCS) $(FRMS) -o $(BNAME)
+	@echo "So_long bonus is compiled."
+
+$(NAME): $(OBJS)
+	@cd ./gnl && $(MAKE)
+	@echo "Gnl is compiled."
+	@cd ./mlx && $(MAKE)
+	@$(CC) $(CFLAGS) $(OBJS) $(ARCS) $(FRMS) -o $(NAME)
 	@echo "cub3d is compiled."
-
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC)  $(CFLAGS) $(CDEBUG) -c $< -o $@
-
-run: all
-	./$(NAME)
 
 clean:
 	rm -f $(OBJS)
 	rm -f $(BOBJS)
-	@cd ./$(SRC_DIR)/gnl && $(MAKE) clean
+	@cd ./gnl && $(MAKE) clean
 	@cd ./mlx && $(MAKE) clean
 	@echo "Cleaned"
 
 fclean: clean
 	rm -f $(NAME)
 	rm -f $(BNAME)
-	@cd ./$(SRC_DIR)/gnl && $(MAKE) fclean
+	@cd ./gnl && $(MAKE) fclean
 	@cd ./mlx && $(MAKE) clean
 	@echo "Fully cleaned"
-	
 
-re: fclean
-	@make all
+re: fclean all
 
-.PHONY: all clean fclean run re
+.PHONY: all clean fclean re bonus

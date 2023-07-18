@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/18 13:19:07 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:46:44 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdio.h>
 # include <sys/time.h>
 
-# include "mlx/mlx.h"
-# include "gnl/get_next_line.h"
+# include "../mlx/mlx.h"
+# include "../src/gnl/get_next_line.h"
 
 
 typedef enum
@@ -43,7 +43,6 @@ typedef enum
 }				directions;
 
 
-#include "mlx/mlx.h"
 #include "math.h"
 #include <stdlib.h>
 
@@ -145,19 +144,27 @@ typedef enum {
     FLOOR_BROWN = 0x00660000   // Brownish color for the floor
 } Color;
 
-//RAYCAST
+//-------------RAYCAST--------------------//
+
+
 void raycast(Game *game);
-
-int is_boundary_violated(t_ray *ray);
 void ray_step(t_ray *ray);
-void draw_floor_ceiling(Game *game,int x, int lineHeight);
-void calculate_perpetual_and_color(Game *game, t_ray *ray, double angle);
-void calculate_step_and_dist(Game *game, t_ray *ray);
-void init_ray(Game *game, t_ray *ray, double angle);
 
-//DRAW
-void my_mlx_pixel_put(img_data *data, int x, int y, int color);
-void draw_line(Game *game, int x, double height, int color);
+//calculate
+void calculate_step_and_dist(Game *game, t_ray *ray);
+void calculate_perpetual(Game *game, t_ray *ray, double angle);
+void determine_texture(Game *game, t_ray *ray, double angle);
+void calculate_texture_x(Game *game, t_ray *ray, double angle);
+
+//draw
+void draw_textured_line(Game *game, t_ray *ray, int x, int lineHeight);
+void draw_floor_ceiling(Game *game,int x, int lineHeight);
 void clearimg(Game *game);
+void my_mlx_pixel_put(img_data *data, int x, int y, int color);
+
+//utils
+void init_ray(Game *game, t_ray *ray, double angle);
+int is_boundary_violated(t_ray *ray);
+
 
 #endif

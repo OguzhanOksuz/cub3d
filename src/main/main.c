@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/17 14:43:20 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:50:36 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,39 +24,6 @@ extern int map[MAP_SIZE][MAP_SIZE] = {
     {1,0,0,0,0,0,0,0,0,1},
     {1,1,1,1,1,1,1,1,1,1}
 };
-
-
-void my_mlx_pixel_put(img_data *data, int x, int y, int color)
-{
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-	{
-		return;
-	}
-	char *dst;
-	int offset = (y * data->line_length + x * (data->bits_per_pixel / 8));
-
-	dst = data->addr + offset;
-	*(unsigned int *)dst = color;
-}
-
-void draw_line(Game *game, int x, double height, int color)
-{
-	int start = (HEIGHT - height) / 2;
-	int end = (HEIGHT + height) / 2;
-	for (int y = start; y < end; y++)
-		my_mlx_pixel_put(&game->img, x, y, color);
-}
-
-void clearimg(Game *game)
-{
-	for (size_t i = 0; i < WIDTH; i++)
-	{
-		for (size_t j = 0; j < HEIGHT; j++)
-		{
-			my_mlx_pixel_put(&game->img, i, j, 0x00000000);
-		}
-	}
-}
 
 
 
@@ -140,16 +107,16 @@ int main(void)
 
 	
 
-	game.textures[0].img = mlx_xpm_file_to_image(game.mlx, "textures/NO.xpm", &game.textures[0].width, &game.textures[0].height);
+	game.textures[0].img = mlx_xpm_file_to_image(game.mlx, "assests/textures/NO.xpm", &game.textures[0].width, &game.textures[0].height);
 	game.textures[0].addr = mlx_get_data_addr(game.textures[0].img, &game.textures[0].bits_per_pixel, &game.textures[0].line_length, &game.textures[0].endian);
 	
-	game.textures[1].img = mlx_xpm_file_to_image(game.mlx, "textures/SO.xpm", &game.textures[1].width, &game.textures[1].height);
+	game.textures[1].img = mlx_xpm_file_to_image(game.mlx, "assests/textures/SO.xpm", &game.textures[1].width, &game.textures[1].height);
 	game.textures[1].addr = mlx_get_data_addr(game.textures[1].img, &game.textures[1].bits_per_pixel, &game.textures[1].line_length, &game.textures[1].endian);
 
-	game.textures[2].img = mlx_xpm_file_to_image(game.mlx, "textures/EA.xpm", &game.textures[2].width, &game.textures[2].height);
+	game.textures[2].img = mlx_xpm_file_to_image(game.mlx, "assests/textures/EA.xpm", &game.textures[2].width, &game.textures[2].height);
 	game.textures[2].addr = mlx_get_data_addr(game.textures[2].img, &game.textures[2].bits_per_pixel, &game.textures[2].line_length, &game.textures[2].endian);
 
-	game.textures[3].img = mlx_xpm_file_to_image(game.mlx, "textures/WE.xpm", &game.textures[3].width, &game.textures[3].height);
+	game.textures[3].img = mlx_xpm_file_to_image(game.mlx, "assests/textures/WE.xpm", &game.textures[3].width, &game.textures[3].height);
 	game.textures[3].addr = mlx_get_data_addr(game.textures[3].img, &game.textures[3].bits_per_pixel, &game.textures[3].line_length, &game.textures[3].endian);
 
 	
@@ -158,6 +125,14 @@ int main(void)
 	raycast(&game);
 	mlx_loop(game.mlx);
 	return (0);
+}
+
+void draw_line(Game *game, int x, double height, int color)
+{
+	int start = (HEIGHT - height) / 2;
+	int end = (HEIGHT + height) / 2;
+	for (int y = start; y < end; y++)
+		my_mlx_pixel_put(&game->img, x, y, color);
 }
 
 
