@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/18 17:25:43 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:08:28 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,32 +52,8 @@ void calculate_perpetual(Game *game, t_ray *ray, double angle)
 	else
 		ray->perp_wall_dist = HEIGHT;
 	
-	// Correct the "fishbowl effect"
-	ray->perp_wall_dist *= cos(game->player.dir - angle);
-
-}
-
-
-void calculate_texture_x(Game *game, t_ray *ray, double angle)
-{
-	double wallX = 0;
 	
-	if (ray->hit && ray->side == 0)
-	{		
-		wallX = game->player.y + ray->perp_wall_dist * ray->ray_dir.y;
-		wallX -=floor((ray->map_x));
-	}
-	else if (ray->hit)
-	{	
-		wallX = game->player.x + ray->perp_wall_dist * ray->ray_dir.x;
-		wallX -=floor((ray->map_y));
-	}
-	
-	wallX -= floor((wallX));
 
-	ray->tex_x = (int)(wallX * (double)(ray->texture->width));
-	if ((ray->side == 0 && ray->ray_dir.x > 0) || (ray->side == 1 && ray->ray_dir.y < 0))
-		ray->tex_x = ray->texture->width - ray->tex_x - 1;
 }
 
 // Assign the texture based on the wall hit
@@ -99,4 +75,29 @@ void determine_texture(Game *game, t_ray *ray, double angle)
     	else
         	ray->texture = &game->textures[SOUTH];
 	}
+}
+
+void calculate_texture_x(Game *game, t_ray *ray, double angle)
+{
+	double wallX = 0;
+	
+	if (ray->hit && ray->side == 0)
+	{		
+		wallX = game->player.y + ray->perp_wall_dist * ray->ray_dir.y;
+		wallX -=floor((ray->map_x));
+	}
+	else if (ray->hit)
+	{	
+		wallX = game->player.x + ray->perp_wall_dist * ray->ray_dir.x;
+		wallX -=floor((ray->map_y));
+	}
+	
+	wallX -= floor((wallX));
+
+	ray->tex_x = (int)(wallX * (double)(ray->texture->width));
+	if ((ray->side == 0 && ray->ray_dir.x > 0) || (ray->side == 1 && ray->ray_dir.y < 0))
+		ray->tex_x = ray->texture->width - ray->tex_x - 1;
+	
+	// Correct the "fishbowl effect"
+	ray->perp_wall_dist *= cos(game->player.dir - angle);
 }

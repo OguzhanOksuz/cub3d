@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/18 16:33:39 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:54:19 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,17 @@ int main(void)
 	
 	char *(txt[]) =
 	{
-
-		"assests/textures/KU.xpm",
- 		"assests/textures/GU.xpm",
-  		"assests/textures/DO.xpm",
-  		"assests/textures/BA.xpm",	
-  		"assests/textures/brick.xpm",
 		"assests/textures/NO.xpm",
  		"assests/textures/SO.xpm",
   		"assests/textures/EA.xpm",
-  		"assests/textures/WE.xpm"
+  		"assests/textures/WE.xpm",
+		"assests/textures/brick.xpm",
+		"assests/textures/KU.xpm",
+ 		"assests/textures/GU.xpm",
+  		"assests/textures/DO.xpm",
+  		"assests/textures/BA.xpm"
+  		
+		
 	
 	};
 	
