@@ -6,14 +6,14 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/18 16:22:50 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:44:43 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 
-void raycast(Game *game)
+void raycast(t_game *game)
 {
 	clearimg(game);
 	double angle_step = FOV / WIDTH;
@@ -40,6 +40,7 @@ void raycast(Game *game)
 		
 		draw_textured_line(game, &ray, x, lineHeight);
 		draw_floor_ceiling(game, x, lineHeight);
+		//draw_floor_ceiling_textured(game, &ray, x, lineHeight);
 	}
 }
 

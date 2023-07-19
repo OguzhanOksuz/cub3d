@@ -6,20 +6,20 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:51:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/18 16:06:35 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:18:34 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int key_hook(int key, Game *game)
+int key_hook(int key, t_game *game)
 {
 	printf("KEY: %d\n", key);
 	if (key == 53) // Escape key
 		exit(0);
 	double dir_x = cos(game->player.dir);
 	double dir_y = sin(game->player.dir);
-	double speed = 0.1;
+	double speed = 0.15;
 	if (key == KEY_W) // W
 	{
 		game->player.x += dir_x * speed;
@@ -54,18 +54,20 @@ int key_hook(int key, Game *game)
 	}
 	
 	print_stats(game);
-	
-	mlx_clear_window(game->mlx, game->win);
-	raycast(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
-
-	
+	routine(game);
 	print_textures(game);
 
 	return (0);
 }
 
-void	print_stats(Game *game)
+void	routine(t_game *game)
+{
+	mlx_clear_window(game->mlx, game->win);
+	raycast(game);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+}
+
+void	print_stats(t_game *game)
 {
 	printf("\n\n--OMG Stats--\n\n");
 	printf("dir = %f\n", game->player.dir);
@@ -77,7 +79,7 @@ void	print_stats(Game *game)
 	printf("player_y = %f\n", game->player.y);
 }
 
-void	print_textures(Game *game)
+void	print_textures(t_game *game)
 {
 	mlx_put_image_to_window(game->mlx, game->win, game->textures[NORTH].img, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->win, game->textures[SOUTH].img, 64, 0);

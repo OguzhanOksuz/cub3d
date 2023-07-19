@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/18 16:06:42 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:24:19 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,16 @@
 
 typedef enum
 {
-	ERROR_DEF,
-	ERROR_AC,
-	ERROR_FILE,
-	ERROR_CHAR,
-	ERROR_WALLS,
+	ERR_DEF,
+	ERR_AC,
+	ERR_FILE,
+	
+	ERR_CHAR,
+	ERR_WALLS,
+	ERR_SPACE, //mapte bosluk varsa diye char ile birlesiriebilir
+	
+	ERR_ORDER,
+	ERR_PATH,
 }				errType;
 
 typedef enum
@@ -40,6 +45,8 @@ typedef enum
 	SOUTH,
 	EAST,
 	WEST,
+	FLOOR,
+	CEILING
 }				directions;
 
 typedef enum
@@ -64,16 +71,16 @@ typedef enum
 #define FOV M_PI / 3
 #define RAY_STEP 0.01
 
-typedef struct s_data
+typedef struct s_img_data
 {
 	void *img;
 	char *addr;
 	int bits_per_pixel;
 	int line_length;
 	int endian;
-} img_data;
+} t_img_data;
 
-typedef struct t_data
+typedef struct t_txt_data
 {
 	void *img;
 	char *addr;
@@ -82,25 +89,25 @@ typedef struct t_data
 	int endian;
 	int width;
 	int height;
-} txt_data;
+} t_txt_data;
 
-typedef struct
+typedef struct s_player
 {
 	double x;
 	double y;
 	double dir;
-} Player;
+} t_player;
 
-typedef struct
+typedef struct s_game
 {
 	void *mlx;
 	void *win;
-	Player player;
-	img_data img;
+	t_player player;
+	t_img_data img;
 	//int map[MAP_SIZE][MAP_SIZE];
 
-	txt_data textures[4];
-} Game;
+	t_txt_data textures[6];
+} t_game;
 
 int map[MAP_SIZE][MAP_SIZE]; //gllobal map
 
@@ -130,7 +137,7 @@ typedef struct s_ray
 	
 	int		color;
 
-	txt_data *texture;
+	t_txt_data *texture;
 	int tex_x;
 	
 }			t_ray;
@@ -158,31 +165,38 @@ typedef enum {
 //-------------MAIN-----------------------//
 
 //hook
-int key_hook(int key, Game *game);
+int key_hook(int key, t_game *game);
+
+void	routine(t_game *game);
 
 //debug
-void	print_stats(Game *game);
-void	print_textures(Game *game);
+void	print_stats(t_game *game);
+void	print_textures(t_game *game);
+
+int	game_loop(t_game *game);
+
+
 //-------------RAYCAST--------------------//
 
 
-void raycast(Game *game);
+void raycast(t_game *game);
 void ray_step(t_ray *ray);
 
 //calculate
-void calculate_step_and_dist(Game *game, t_ray *ray);
-void calculate_perpetual(Game *game, t_ray *ray, double angle);
-void determine_texture(Game *game, t_ray *ray, double angle);
-void calculate_texture_x(Game *game, t_ray *ray, double angle);
+void calculate_step_and_dist(t_game *game, t_ray *ray);
+void calculate_perpetual(t_game *game, t_ray *ray, double angle);
+void determine_texture(t_game *game, t_ray *ray, double angle);
+void calculate_texture_x(t_game *game, t_ray *ray, double angle);
 
 //draw
-void draw_textured_line(Game *game, t_ray *ray, int x, int lineHeight);
-void draw_floor_ceiling(Game *game,int x, int lineHeight);
-void clearimg(Game *game);
-void my_mlx_pixel_put(img_data *data, int x, int y, int color);
+void draw_textured_line(t_game *game, t_ray *ray, int x, int lineHeight);
+void draw_floor_ceiling(t_game *game,int x, int lineHeight);
+void draw_floor_ceiling_textured(t_game *game, t_ray *ray, int x, int lineHeight);
+void clearimg(t_game *game);
+void my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 
 //utils
-void init_ray(Game *game, t_ray *ray, double angle);
+void init_ray(t_game *game, t_ray *ray, double angle);
 int is_boundary_violated(t_ray *ray);
 
 
