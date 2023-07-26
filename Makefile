@@ -6,7 +6,7 @@
 #    By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 16:15:07 by mkaraden          #+#    #+#              #
-#    Updated: 2023/07/19 19:18:47 by mkaraden         ###   ########.fr        #
+#    Updated: 2023/07/26 18:15:06 by mkaraden         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ BIN_DIR	= bin
 
 SRC =	main/main.c		main/hook.c		raycast/raycast.c	\
 		raycast/raycast_calculate.c		raycast/raycast_draw.c	raycast/raycast_utils.c	\
+		minimap/minimap.c
 		
 		
 

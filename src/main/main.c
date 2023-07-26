@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/19 19:39:27 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:23:09 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,14 @@ int main(void)
  		"assests/textures/SO.xpm",
   		"assests/textures/EA.xpm",
   		"assests/textures/WE.xpm",
-		"assests/textures/brick.xpm",
+		"assests/textures/brick.xpm", //4
 		"assests/textures/floor.xpm",
+		
+		"assests/minimap/mbg.xpm",
+		"assests/minimap/mw.xpm",
+		"assests/minimap/mp.xpm",
+		
+		
 		"assests/textures/KU.xpm",
  		"assests/textures/GU.xpm",
   		"assests/textures/DO.xpm",
@@ -79,6 +85,16 @@ int main(void)
 
 	game.textures[CEILING].img = mlx_xpm_file_to_image(game.mlx, txt[4], &game.textures[5].width, &game.textures[5].height);
 	game.textures[CEILING].addr = mlx_get_data_addr(game.textures[5].img, &game.textures[5].bits_per_pixel, &game.textures[5].line_length, &game.textures[5].endian);
+
+	game.textures[M_BG].img = mlx_xpm_file_to_image(game.mlx, txt[M_BG], &game.textures[6].width, &game.textures[6].height);
+	game.textures[M_BG].addr = mlx_get_data_addr(game.textures[6].img, &game.textures[6].bits_per_pixel, &game.textures[6].line_length, &game.textures[6].endian);
+
+	game.textures[M_W].img = mlx_xpm_file_to_image(game.mlx, txt[M_W], &game.textures[7].width, &game.textures[7].height);
+	game.textures[M_W].addr = mlx_get_data_addr(game.textures[7].img, &game.textures[7].bits_per_pixel, &game.textures[7].line_length, &game.textures[7].endian);
+
+	game.textures[M_P].img = mlx_xpm_file_to_image(game.mlx, txt[M_P], &game.textures[8].width, &game.textures[8].height);
+	game.textures[M_P].addr = mlx_get_data_addr(game.textures[8].img, &game.textures[8].bits_per_pixel, &game.textures[8].line_length, &game.textures[8].endian);
+	
 	
 	
 	

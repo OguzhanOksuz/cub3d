@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/19 19:24:19 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:15:50 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ typedef enum
 	EAST,
 	WEST,
 	FLOOR,
-	CEILING
+	CEILING,
+	M_BG,
+	M_W,
+	M_P
 }				directions;
 
 typedef enum
@@ -106,7 +109,7 @@ typedef struct s_game
 	t_img_data img;
 	//int map[MAP_SIZE][MAP_SIZE];
 
-	t_txt_data textures[6];
+	t_txt_data textures[9]; //6 + 3
 } t_game;
 
 int map[MAP_SIZE][MAP_SIZE]; //gllobal map
@@ -198,6 +201,12 @@ void my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 //utils
 void init_ray(t_game *game, t_ray *ray, double angle);
 int is_boundary_violated(t_ray *ray);
+
+
+//minimap
+void	draw_minimap(t_game *game);
+void	draw_tile(t_game *game, int i, int j);
+
 
 
 #endif
