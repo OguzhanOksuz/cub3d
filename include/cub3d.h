@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/26 18:15:50 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/29 13:26:31 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,25 @@ typedef enum
 	M_BG,
 	M_W,
 	M_P
-}				directions;
+}				direction;
+
+typedef struct s_data
+{
+	char	**map;
+	int		map_width;
+	int		map_height;
+	
+	int		dir; //direction enum dan ver
+	
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
+
+	int		floor;
+	int		ceiling;
+	
+} t_data;
 
 typedef enum
 {
