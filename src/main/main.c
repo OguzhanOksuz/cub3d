@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/26 18:23:09 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:16:04 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,23 @@ extern int map[MAP_SIZE][MAP_SIZE] = {
     {1,1,1,1,1,1,1,1,1,1}
 };
 
-/*int main2(int ac, char **av)
+//asil
+int main(int ac, char **av)
 {
-	if (ac != 2)
-		ft_error(NULL, ERROR_DEF);
-	parse_cub(av[1]);
-	
-}*/
+	t_game	*game = malloc(sizeof(t_game));
+	parse_cub(game, ac, av); //game->data
+	init_stuff(game);
+	(void)ac;
+	mlx_hook(game->win, 2, 0, key_hook, game);
+	(void)ac;
+	raycast(game);
+	mlx_loop(game->mlx);
+	return (0);
+}
 
-int main(void)
+
+//temp
+int main2(void)
 {
 	t_game game;
 	game.mlx = mlx_init();
@@ -60,7 +68,6 @@ int main(void)
 		"assests/minimap/mbg.xpm",
 		"assests/minimap/mw.xpm",
 		"assests/minimap/mp.xpm",
-		
 		
 		"assests/textures/KU.xpm",
  		"assests/textures/GU.xpm",
@@ -94,9 +101,6 @@ int main(void)
 
 	game.textures[M_P].img = mlx_xpm_file_to_image(game.mlx, txt[M_P], &game.textures[8].width, &game.textures[8].height);
 	game.textures[M_P].addr = mlx_get_data_addr(game.textures[8].img, &game.textures[8].bits_per_pixel, &game.textures[8].line_length, &game.textures[8].endian);
-	
-	
-	
 	
 
 	mlx_hook(game.win, 2, 0, key_hook, &game);

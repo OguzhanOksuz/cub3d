@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/19 19:44:15 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:09:47 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,17 @@ void determine_texture(t_game *game, t_ray *ray, double angle)
 	if(ray->side == 0)
 	{ 
     	if(ray->ray_dir.x > 0) // Check the direction of the ray
-        	ray->texture = &game->textures[EAST];
+        	ray->texture = &(game->textures[EAST]);
     	else
-        	ray->texture = &game->textures[WEST];
+        	ray->texture = &(game->textures[WEST]);
 	}
 	// If the ray hit a wall on the y-axis (North/South wall)
 	else
 	{ 
     	if(ray->ray_dir.y > 0) // Check the direction of the ray
-        	ray->texture = &game->textures[NORTH];
+        	ray->texture = &(game->textures[NORTH]);
     	else
-        	ray->texture = &game->textures[SOUTH];
+        	ray->texture = &(game->textures[SOUTH]);
 	}
 }
 

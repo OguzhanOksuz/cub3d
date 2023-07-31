@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:02:09 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/19 19:43:51 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:03:59 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void clearimg(t_game *game)
 	{
 		for (size_t j = 0; j < HEIGHT; j++)
 		{
-			my_mlx_pixel_put(&game->img, i, j, 0x00000000);
+			my_mlx_pixel_put(&(game->img), i, j, 0x00000000);
 		}
 	}
 }

@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   libs.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/19 17:48:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 15:34:56 by mkaraden         ###   ########.fr       */
+/*   Created: 2023/07/31 15:20:54 by mkaraden          #+#    #+#             */
+/*   Updated: 2023/07/31 15:21:54 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef LIBS_H
+# define LIBS_H
 
-t_data	parse_cub(t_game *game, int ac, char **av)
-{
-	t_data data;
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include <fcntl.h>
+# include <math.h>
+# include <stdio.h>
+# include <sys/time.h>
 
-	//
+# include "../mlx/mlx.h"
+# include "../src/gnl/get_next_line.h"
 
-	return (data);
-}
+#include "enum.h"
+#include "struct.h"
+
+#endif

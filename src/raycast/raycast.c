@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/19 19:44:43 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:04:47 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void raycast(t_game *game)
 {
+	(void)game;
 	clearimg(game);
 	double angle_step = FOV / WIDTH;
 	double angle = game->player.dir - FOV / 2;

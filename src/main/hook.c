@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:51:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/26 18:17:12 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:18:15 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,33 @@ int key_hook(int key, t_game *game)
 	double dir_x = cos(game->player.dir);
 	double dir_y = sin(game->player.dir);
 	double speed = 0.15;
-	if (key == KEY_W) // W
+	if (key == KEY_W)
 	{
 		game->player.x += dir_x * speed;
 		game->player.y += dir_y * speed;
 	}
-	else if (key == KEY_S) // S
+	else if (key == KEY_S)
 	{
 		game->player.x -= dir_x * speed;
 		game->player.y -= dir_y * speed;
 	}
-	else if (key == KEY_A) // A
+	else if (key == KEY_A) 
 	{
 		game->player.x += dir_y * speed;
 		game->player.y -= dir_x * speed;
 	}
-	else if (key == KEY_D) // D
+	else if (key == KEY_D) 
 	{
 		game->player.x -= dir_y * speed;
 		game->player.y += dir_x * speed;
 	}
-	else if (key == ARR_L) // Left arrow key
+	else if (key == ARR_L)
 	{
 		game->player.dir -= 0.1;
 		if (game->player.dir < 0) // Keep the angle between 0 and 2π
 			game->player.dir += 2 * M_PI;
 	}
-	else if (key == ARR_R) // Right arrow key
+	else if (key == ARR_R)
 	{
 		game->player.dir += 0.1;
 		if (game->player.dir > 2 * M_PI) // Keep the angle between 0 and 2π
@@ -131,7 +131,7 @@ int key_hook2(int key, t_game *game)
 
 void	routine(t_game *game)
 {
-	mlx_clear_window(game->mlx, game->win);
+	//mlx_clear_window(game->mlx, game->win);
 	raycast(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	draw_minimap(game);
