@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:14:38 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 15:39:54 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:20:15 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_game
 	t_img_data img;
 	
 	//int map[MAP_SIZE][MAP_SIZE];
-	t_data data;
+	t_data *data;
 
 	t_txt_data textures[9]; //6 + 3
 } t_game;

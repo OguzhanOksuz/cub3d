@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 16:16:04 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:19:29 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ int main(int ac, char **av)
 	t_game	*game = malloc(sizeof(t_game));
 	parse_cub(game, ac, av); //game->data
 	init_stuff(game);
-	(void)ac;
 	mlx_hook(game->win, 2, 0, key_hook, game);
-	(void)ac;
 	raycast(game);
 	mlx_loop(game->mlx);
 	return (0);
