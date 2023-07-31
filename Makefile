@@ -6,7 +6,7 @@
 #    By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 16:15:07 by mkaraden          #+#    #+#              #
-#    Updated: 2023/07/31 15:48:43 by mkaraden         ###   ########.fr        #
+#    Updated: 2023/07/31 19:23:55 by mkaraden         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ AR	= ar rcs
 RM	= rm -f
 
 CC		= gcc
-CFLAGS	= -I ./include/ -fsanitize=address
+CFLAGS	= -I ./include/ 
 CDEBUG	= -g 
 FRMS	=	-framework OpenGL -framework AppKit
 
@@ -60,7 +60,7 @@ run: all
 	./$(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJ)
 	rm -f $(BOBJS)
 	@cd ./$(SRC_DIR)/gnl && $(MAKE) clean
 	@cd ./mlx && $(MAKE) clean
