@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 16:19:29 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:19:47 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int ac, char **av)
 	parse_cub(game, ac, av); //game->data
 	init_stuff(game);
 	mlx_hook(game->win, 2, 0, key_hook, game);
-	raycast(game);
+	routine(game);
 	mlx_loop(game->mlx);
 	return (0);
 }

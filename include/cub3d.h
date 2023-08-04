@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 16:19:42 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:18:40 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_win(t_game *game);
 void	init_textures(t_game *game);
 
 
-//-------------PARSE-----------------------//
+//-------------PARSE-----------------------// //oguzhan
 void	parse_cub(t_game *game, int ac, char **av);
 
 //-------------RAYCAST--------------------//
