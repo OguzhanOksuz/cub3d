@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:11:25 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 15:41:23 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:14:16 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define FOV M_PI / 3
 #define RAY_STEP 0.01
 
-typedef enum s_err
+typedef enum s_err //
 {
 	ERR_DEF,
 	ERR_AC,

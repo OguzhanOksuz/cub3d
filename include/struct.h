@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:14:38 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 16:20:15 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:16:59 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,24 @@
 //.cub data 
 typedef struct s_data
 {
-	char	**map;
-	int		map_width;
+	char	**map; //map
+	int		map_width; //en son halinin uzunlugu genisligi
 	int		map_height;
 	
 	int		dir; //direction enum dan ver
+
+	int		x;
+	int		y;
 	
-	char	*no;
-	char	*so;
+	char	*no; //string
+	char	*so; //
 	char	*ea;
 	char	*we;
 
-	int		floor; //t_color daki gibi ver colorlari
-	int		ceiling;
+	
+
+	int		floor; //t_color enum daki gibi ver colorlari
+	int		ceiling; //
 	
 } t_data;
 
