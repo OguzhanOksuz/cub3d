@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 17:48:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 16:21:00 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/07 11:37:38 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,15 @@
 void	parse_cub(t_game *game, int ac, char **av)
 {
 	t_data *data = malloc(sizeof(t_data));
-
-	///
-
-	game->data = data;
+	
+	if (!data)
+		ft_error(ERR_MALLOC, game);
+	if (ac == 2)
+	{
+		if (ft_strcmp(av[1] + ft_strrchr(av[1]) + 1, ".cub") == 0)
+			ft_error(ERR_FILE, game);
+		map_check(data, av[1]);
+	}
+	else
+		ft_error(ERR_AC, game);
 }
