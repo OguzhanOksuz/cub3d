@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:11:25 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/06 22:14:16 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/07 11:28:02 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef enum s_err //
 {
 	ERR_DEF,
+	ERR_MALLOC, //-Ozi
 	ERR_AC,
 	ERR_FILE,
 	ERR_CHAR,
