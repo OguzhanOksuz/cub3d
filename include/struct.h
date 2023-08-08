@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:14:38 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/08 21:40:58 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/08 23:18:54 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //.cub data 
 typedef struct s_data
 {
-	char	**raw_map; //  -Ozi
+	char	**file; //  -Ozi
 	char	**map; //map
 	int		map_width; //en son halinin uzunlugu genisligi
 	int		map_height;

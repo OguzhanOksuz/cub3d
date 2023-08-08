@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/08 21:55:39 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/08 23:24:14 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	game_loop(t_game *game);
 
 //unitls 				//-ozi
 void	ft_error(int err, void *ptr);	//-ozi
+void	data_error(int err, t_game *game);
 
 //init
 void	init_stuff(t_game *game);
@@ -43,6 +44,7 @@ void	init_textures(t_game *game);
 
 
 //-------------PARSE-----------------------// //oguzhan
+
 void	parse_cub(t_data *data, int ac, char **av);
 void	map_check(t_data *data, char *src);
 void	init_map(t_data *data, char *src);

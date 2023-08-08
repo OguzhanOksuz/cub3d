@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:11:25 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/08 23:15:47 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/08 23:30:17 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef enum s_err //
 {
 	ERR_AC, //Arguman count
 	ERR_EXT, //Extension .cub
-	ERR_ELEM //Element
+	ERR_ELEM, //Element
 	ERR_ORDER, //Map order
 	ERR_CHAR, //invalid char exist or occurance
 	ERR_WALLS, //wall
