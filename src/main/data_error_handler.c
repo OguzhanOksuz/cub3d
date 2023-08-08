@@ -6,11 +6,11 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:20:05 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/08 23:20:29 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/08 23:28:45 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	2d_char_free(char **arr)
+void	char_arr_free(char **arr)
 {
 	int	i;
 
@@ -26,8 +26,8 @@ void	free_data(t_data *data)
 {
 	if (data)
 	{
-		2d_char_free(data->file);
-		2d_char_free(data->map);
+		char_arr_free(data->file);
+		char_arr_free(data->map);
 		if (data->no)
 			free(data->no);
 		if (data->so)
@@ -62,4 +62,5 @@ void	data_error(int err, t_game *game)
 		write(2, "File could not be read!\n", 24);
 	free_data(game->data);
 	free(game);
+	exit(1);
 }
