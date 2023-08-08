@@ -6,11 +6,20 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:35:42 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/08 21:45:47 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/08 22:19:29 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	check_contents(t_data *data)
+{
+	data->no = get_content(data, "NO");
+	if
+	data->so = get_content(data, "SO");
+	data->ea = get_content(data, "EA");
+	data->we = get_content(data, "WE");
+}
 
 void	get_raw_map(t_data *data, char *src)
 {
@@ -52,8 +61,5 @@ void	map_check(t_data *data, char *src)
 	if (!data->raw_map)
 		ft_error(ERR_MALLOC, data);
 	get_raw_map(data, src);
-	//
-	for (int a = 0; data->raw_map[a]; a++)
-	       printf("raw_map[%d] = %s", a, data->raw_map[a]);	
-//	check_contents(game, raw_map);
+	check_contents(game, raw_map);
 }
