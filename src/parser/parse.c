@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 17:48:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/09 00:00:27 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/09 00:03:08 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	parse_cub(t_game *game, int ac, char **av)
 		if (ft_strcmp(ft_strrchr(av[1], '.') + 1, "cub") != 0)
 			data_error(ERR_EXT, game);
 		read_file(game, av[1]);
+		check_elements(game);
 	}
 	else
 		data_error(ERR_AC, game);
