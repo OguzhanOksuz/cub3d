@@ -6,9 +6,11 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:20:05 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/08 23:28:45 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/08 23:33:58 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "cub3d.h"
 
 void	char_arr_free(char **arr)
 {
