@@ -6,14 +6,13 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:35:42 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/08 17:58:27 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/08 18:33:12 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "libs.h"
 
-void	map_check(t_data *game, char *src)
+void	map_check(t_game *game, char *src)
 {
 	int		fd;
 	int		i;
