@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/08 21:43:47 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/08 21:55:39 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	init_textures(t_game *game);
 void	parse_cub(t_data *data, int ac, char **av);
 void	map_check(t_data *data, char *src);
 void	init_map(t_data *data, char *src);
-void	check_contents(t_data *data, char **raw_map);
 char	*ft_strrchr(char *str, char ch);
 int	ft_strcmp(char *s1, char *s2);
 
