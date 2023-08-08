@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/04 17:18:40 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:20:24 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ void	print_stats(t_game *game);
 void	print_textures(t_game *game);
 
 int	game_loop(t_game *game);
+
+//unitls 				//-ozi
+void	ft_error(int err, void *ptr);	//-ozi
 
 //init
 void	init_stuff(t_game *game);
