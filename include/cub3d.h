@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/09 12:44:04 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/09 19:27:22 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ void	init_textures(t_game *game);
 void	parse_cub(t_game *game, int ac, char **av);
 int	is_mapline(char *line);
 char	*ft_strrchr(char *str, char ch);
+char	*ft_substr(t_game *game, char *str, int len);
 int	ft_strcmp(char *s1, char *s2);
-void	get_elements(t_game *game);
+void	get_elements(t_game *game, int i);
+//DEBUG
+void	debug_data(t_data *data);
 
 //-------------RAYCAST--------------------//
 
