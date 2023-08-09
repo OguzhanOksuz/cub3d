@@ -6,13 +6,13 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 00:03:15 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/09 00:12:33 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/09 12:43:37 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_elements(t_game *game)
+void	get_elements(t_game *game)
 {
 	
 }
