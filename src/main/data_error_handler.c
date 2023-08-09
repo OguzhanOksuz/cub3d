@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:20:05 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/09 13:23:37 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/09 18:59:06 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	char_arr_free(char **arr)
 	i = 0;
 	if (arr)
 	{
-		printf("WTF\n");
 		while (arr[i] != 0)
 		{
 			free(arr[i]);
