@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:25:07 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/09 19:58:35 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/09 23:34:56 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	debug_data(t_data *data)
 {
+	printf("\n----DEBUG----\n");
 	printf("file\n");
 	for (int i = 0; data->file[i]; i++)
 		printf("%s", data->file[i]);
@@ -33,4 +34,5 @@ void	debug_data(t_data *data)
 	printf("y = %d\n", data->y);
 	printf("floor = %d\n", data->floor);
 	printf("ceiling = %d\n", data->ceiling);
+	printf("\n-------------\n");
 }

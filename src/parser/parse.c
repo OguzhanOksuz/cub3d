@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 17:48:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/09 22:25:30 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/09 23:32:12 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	get_map(t_game *game)
 		free(game->data->file[j + k]);
 		game->data->file[j + k++] = 0;
 	}
+	game->data->map[k] = 0;
 }
 
 void	parse_cub(t_game *game, int ac, char **av)
@@ -97,16 +98,14 @@ void	parse_cub(t_game *game, int ac, char **av)
 
 	if (ac == 2)
 	{
-		data = (t_data *)malloc(sizeof(data));
+		data = (t_data *)malloc(sizeof(t_data));
 		if (!data)
 			data_error(ERR_MALLOC, game);
 		game->data = data;
 		game->data->file = NULL;
-		game->data->map = "";
-		printf("Kaskımı geriver 5\n");
+		game->data->map = NULL;
 		if (ft_strcmp(ft_strrchr(av[1], '.'), ".cub") != 0)
 			data_error(ERR_EXT, game);
-		printf("Kaskımı geriver \n");
 		read_file(game, av[1]);
 		trim_file(game);
 		get_map(game);
