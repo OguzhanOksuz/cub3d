@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 17:48:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/09 13:22:26 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/09 13:27:11 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	parse_cub(t_game *game, int ac, char **av)
 		trim_file(game);
 		get_map(game);
 		trim_file(game);
-		//get_elements(game);
+		get_elements(game);
 	}
 	else
 		data_error(ERR_AC, game);
