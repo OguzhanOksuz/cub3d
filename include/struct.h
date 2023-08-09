@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:14:38 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/09 13:21:48 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/09 14:13:56 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,26 @@ typedef struct s_data
 {
 	char	**file; //  -Ozi
 	char	**map; //map
+	char	*tmp; 
+
 	int		map_width; //en son halinin uzunlugu genisligi
 	int		map_height;
 	
 	int		dir; //direction enum dan ver
 
-	int		x;
-	int		y;
+	int		x; //final;
+	int		y; //final
 	
-	char	*no; //string
-	char	*so; //
-	char	*ea;
-	char	*we;
-
+	char	*no; //raw-
+	char	*so; //raw-
+	char	*ea; //raw-
+	char	*we; //raw-
+	char	*f; //raw-
+	char	*c; //raw-
 	
 
-	int		floor; //t_color enum daki gibi ver colorlari
-	int		ceiling; //
+	int		floor; //t_color enum daki gibi ver colorlari //final
+	int		ceiling; // final
 	
 } t_data;
 
