@@ -6,7 +6,7 @@
 #    By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 16:15:07 by mkaraden          #+#    #+#              #
-#    Updated: 2023/08/09 20:04:34 by ooksuz           ###   ########.fr        #
+#    Updated: 2023/08/12 10:41:07 by ooksuz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ BIN_DIR	= bin
 
 SRC =	main/main.c		main/hook.c		main/data_error_handler.c	main/init.c	 \
 		parser/parse.c 	parser/string_utils.c parser/get_elements.c\
+		parser/lexer.c	\
 		parser/debug.c\
 		raycast/raycast.c	\
 		raycast/raycast_calculate.c		raycast/raycast_draw.c	raycast/raycast_utils.c	\
