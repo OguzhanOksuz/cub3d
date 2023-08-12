@@ -1,11 +1,11 @@
  
-NO A
-SO B
-WE C
-EA D
+NO ../assests/textures/NO.xpm
+SO ../assests/textures/SO.xpm
+EA ../assests/textures/EA.xpm
+WE ../assests/textures/WE.xpm
 
-F 1
-C 2
+F 255,0,0
+C 0,255,0
 
 
 
