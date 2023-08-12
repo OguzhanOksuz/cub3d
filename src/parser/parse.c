@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 17:48:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/12 10:35:22 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/12 22:04:49 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,26 @@ void	get_map(t_game *game)
 	game->data->map[k] = 0;
 }
 
+void	set_data(t_game *game)
+{
+	game->data->file = 0;
+	game->data->map = 0;
+	game->data->tmp = 0;
+	game->data->no = 0;
+	game->data->so = 0;
+	game->data->ea = 0;
+	game->data->we = 0;
+	game->data->f = 0;
+	game->data->c = 0;
+	game->data->map_width = 0;
+	game->data->map_height = 0;
+	game->data->dir = 0;
+	game->data->x = 0;
+	game->data->y = 0;
+	game->data->floor = 0;
+	game->data->ceiling = 0;
+}
+
 void	parse_cub(t_game *game, int ac, char **av)
 {
 	t_data	*data;
@@ -102,8 +122,7 @@ void	parse_cub(t_game *game, int ac, char **av)
 		if (!data)
 			data_error(ERR_MALLOC, game);
 		game->data = data;
-		game->data->file = NULL;
-		game->data->map = NULL;
+		set_data(game);
 		if (ft_strcmp(ft_strrchr(av[1], '.'), ".cub") != 0)
 			data_error(ERR_EXT, game);
 		read_file(game, av[1]);

@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:22:11 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/09 23:16:24 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/12 11:19:10 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_substr(t_game *game, char *str, int len)
 		data_error(ERR_MALLOC, game);
 	while (++i < len)
 		rt[i] = str[i];
-	rt[i] = 0;
+	rt[len] = 0;
 	return (rt);
 }
 
@@ -66,6 +66,8 @@ int	ft_strcmp(char *s1, char *s2)
 	int	i;
 
 	i = 0;
+	if (!s1 || !s2)
+		return (1);
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);

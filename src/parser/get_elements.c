@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 00:03:15 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/09 23:33:31 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/12 20:37:21 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,10 @@ char	*get_word(t_game *game, char *src, int num)
 	return (NULL);
 }
 
-void	set_null(t_game *game, int code)
-{
-	game->data->tmp = NULL;
-	if (code == 0)
-	{
-		game->data->no = NULL;
-		game->data->so = NULL;
-		game->data->ea = NULL;
-		game->data->we = NULL;
-		game->data->f = NULL;
-		game->data->map_width = 0;
-		game->data->map_height = 0;
-		game->data->x = 0;
-		game->data->y = 0;
-		game->data->floor = 0;
-		game->data->ceiling = 0;
-	}
-}
-
 void	get_elements(t_game *game, int i)
 {
 	while (game->data->file[++i])
 	{
-		set_null(game, i);
 		if (word_counter(game->data->file[i]) == 0)
 			continue ;
 		if (word_counter(game->data->file[i]) != 2)
