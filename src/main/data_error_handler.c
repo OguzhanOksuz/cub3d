@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:20:05 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/09 18:59:06 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/12 20:41:52 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	free_data(t_data *data)
 			char_arr_free(data->file);
 		if (data->map)
 			char_arr_free(data->map);
+		if (data->tmp)
+			free(data->tmp);
 		if (data->no)
 			free(data->no);
 		if (data->so)
@@ -43,6 +45,10 @@ void	free_data(t_data *data)
 			free(data->ea);
 		if (data->we)
 			free(data->we);
+		if (data->f)
+			free(data->f);
+		if (data->c)
+			free(data->c);
 		free(data);
 	}
 }
@@ -68,7 +74,7 @@ void	data_error(int err, t_game *game)
 	else if (err == ERR_READ)
 		write(2, "File could not be read!\n", 24);
 	free_data(game->data);
-//	free(game);
+	free(game);
 	system("leaks cub3d");
 	exit(1);
 }
