@@ -6,11 +6,19 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 22:05:02 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/12 22:13:20 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/13 21:16:14 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_split_error(t_game *game, char **arr, int i)
+{
+	while (i-- > 0)
+		free(arr[i]);
+	free(arr);
+	data_error(ERR_MALLOC, game);
+}
 
 int	ft_wordcount(const char *s, char sep)
 {
@@ -33,7 +41,7 @@ int	ft_wordcount(const char *s, char sep)
 	return (count);
 }
 
-char	*ft_worddup(const char *s, char sep, t_game *game)
+char	*ft_worddup(char *s, char sep, t_game *game)
 {
 	int		len;
 	char	*word;
@@ -47,7 +55,7 @@ char	*ft_worddup(const char *s, char sep, t_game *game)
 	len = s - start;
 	word = (char *)malloc(len + 1);
 	if (!word)
-		data_error(ERR_MALLOC, game);;
+		data_error(ERR_MALLOC, game);
 	word[len] = '\0';
 	while (len--)
 		word[len] = start[len];
@@ -64,20 +72,16 @@ char	**ft_split(char *s, char sep, t_game *game)
 	split = (char **)malloc((count + 1) * sizeof(char *));
 	if (!split)
 		data_error(ERR_MALLOC, game);
-	i = 0;
-	while (i < count)
+	i = -1;
+	while (++i < count)
 	{
 		split[i] = ft_worddup(s, sep, game);
 		if (!split[i])
-		{
-			while (i--)
-				free(split[i]);
-			free(split);
-			data_error(ERR_MALLOC, game);
-		}
+			ft_split_error(game, split, i);
 		while (*s && *s != sep)
 			s++;
-		i++;
+		if (*s == sep)
+			s++;
 	}
 	split[count] = 0;
 	return (split);

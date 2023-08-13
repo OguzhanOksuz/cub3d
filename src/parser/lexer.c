@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 10:35:30 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/12 22:18:13 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/13 20:11:35 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	check_color(t_game *game, char **arr)
 			arr_free(ERR_ELEM, game, arr);
 		i--;
 	}
-	return (ft_atoi(arr[0]) << 16 | ft_atoi(arr[1]) << 8 | ft_atoi(arr[2]));
+	return ((ft_atoi(arr[0]) << 16) | (ft_atoi(arr[1]) << 8) | ft_atoi(arr[2]));
 }
 
 void	lexer(t_game *game)
