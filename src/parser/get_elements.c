@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 00:03:15 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/12 20:37:21 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/14 18:54:46 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,22 @@ char	*get_word(t_game *game, char *src, int num)
 	return (NULL);
 }
 
+void	got_them_all(t_game *game)
+{
+	if (game->data->no == 0)
+		data_error(ERR_ELEM, game);
+	if (game->data->so == 0)
+		data_error(ERR_ELEM, game);
+	if (game->data->ea == 0)
+		data_error(ERR_ELEM, game);
+	if (game->data->we == 0)
+		data_error(ERR_ELEM, game);
+	if (game->data->f == 0)
+		data_error(ERR_ELEM, game);
+	if (game->data->c == 0)
+		data_error(ERR_ELEM, game);
+}
+
 void	get_elements(t_game *game, int i)
 {
 	while (game->data->file[++i])
@@ -88,4 +104,5 @@ void	get_elements(t_game *game, int i)
 		if (game->data->tmp != NULL)
 			free(game->data->tmp);
 	}
+	got_them_all(game);
 }

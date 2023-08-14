@@ -6,22 +6,20 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 17:48:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/14 15:53:58 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/14 19:07:23 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	read_file(t_game *game, char *src)
+void	read_file(t_game *game, char *src, int i)
 {
 	int		fd;
-	int		i;
 	char	*tmp;
 
 	fd = open(src, O_RDONLY);
 	if (fd < 0)
 		data_error(ERR_PATH, game);
-	i = 0;
 	tmp = get_next_line(fd);
 	while (tmp && ++i)
 	{
@@ -29,6 +27,8 @@ void	read_file(t_game *game, char *src)
 		tmp = get_next_line(fd);
 	}
 	close (fd);
+	if (i < 6)
+		data_error(ERR_ELEM, game);
 	game->data->file = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!game->data->file)
 		data_error(ERR_MALLOC, game);
@@ -125,7 +125,9 @@ void	parse_cub(t_game *game, int ac, char **av)
 		set_data(game);
 		if (ft_strcmp(ft_strrchr(av[1], '.'), ".cub") != 0)
 			data_error(ERR_EXT, game);
-		read_file(game, av[1]);
+		read_file(game, av[1], 0);
+		if (game->data->file == 0)
+			data_error(ERR_ELEM, game);
 		trim_file(game);
 		get_map(game);
 		trim_file(game);

@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:22:11 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/12 11:19:10 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/14 18:48:13 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	*ft_strrchr(char *str, char ch)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (NULL);
 	while (str[i])
 	{
 		i++;
