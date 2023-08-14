@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/12 22:11:35 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/14 18:05:39 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,17 @@ int	ft_strcmp(char *s1, char *s2);
 void	get_elements(t_game *game, int i);
 void	lexer(t_game *game);
 char	**ft_split(char *str, char sep, t_game *game);
+void	check_map(t_game *gmae);
+int	char_counter(char **map, char ch);
+void	trim_nl(t_game *game);
+void	square_map(t_game *game);
+void	format_map(t_game *game);
+void	get_map_val(t_game *game);
+void	get_player(t_game *game);
+char	get_top(char **map, int column);
+char	get_bottom(char **map, int column);
+char	get_left(char	*line);
+char	get_right(char *line);
 //DEBUG
 void	debug_data(t_data *data);
 
