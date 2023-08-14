@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:25:07 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/09 23:34:56 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/14 18:07:31 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	debug_data(t_data *data)
 		printf("%s", data->file[i]);
 	printf("\nmap\n");
 	for (int j = 0; data->map[j]; j++)
-		printf("%s", data->map[j]);
+		printf("%s\n", data->map[j]);
 	printf("\n--------\n");
 	printf("NO = %s\n", data->no);
 	printf("SO = %s\n", data->so);
@@ -32,6 +32,7 @@ void	debug_data(t_data *data)
 	printf("height = %d\n", data->map_height);
 	printf("x = %d\n", data->x);
 	printf("y = %d\n", data->y);
+	printf("dir = %d\n", data->dir);
 	printf("floor = %d\n", data->floor);
 	printf("ceiling = %d\n", data->ceiling);
 	printf("\n-------------\n");

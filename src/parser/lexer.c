@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 10:35:30 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/13 20:11:35 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/14 17:52:35 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	arr_free(int err, t_game *game, char **arr)
 	}
 	if (err != 2147483647)
 		data_error(err, game);
+	free(arr);
 }
 
 int	check_color(t_game *game, char **arr)
@@ -109,4 +110,9 @@ void	lexer(t_game *game)
 		data_error(ERR_MALLOC, game);
 	game->data->ceiling = check_color(game, arr);
 	arr_free(2147483647, game, arr);
+	trim_nl(game);
+	get_map_val(game);
+	square_map(game);
+	check_map(game);
+	format_map(game);
 }
