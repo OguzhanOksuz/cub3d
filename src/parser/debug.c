@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:25:07 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/14 18:07:31 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/16 19:31:53 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	debug_data(t_data *data)
 	printf("floor = %d\n", data->floor);
 	printf("ceiling = %d\n", data->ceiling);
 	printf("\n-------------\n");
+	system("leaks cub3d");
 }

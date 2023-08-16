@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 10:35:30 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/14 17:52:35 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/16 17:52:49 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ void	lexer(t_game *game)
 	trim_nl(game);
 	get_map_val(game);
 	square_map(game);
+	check_inside(game);
 	check_map(game);
 	format_map(game);
+	re_format_map(game);
 }

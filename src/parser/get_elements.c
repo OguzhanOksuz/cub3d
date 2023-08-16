@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 00:03:15 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/14 18:54:46 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:04:58 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	*get_word(t_game *game, char *src, int num)
 
 void	got_them_all(t_game *game)
 {
+	game->data->tmp = 0;
 	if (game->data->no == 0)
 		data_error(ERR_ELEM, game);
 	if (game->data->so == 0)
@@ -101,7 +102,7 @@ void	get_elements(t_game *game, int i)
 			game->data->c = get_word(game, game->data->file[i], 2);
 		else
 			data_error(ERR_ELEM, game);
-		if (game->data->tmp != NULL)
+		if (game->data->tmp != 0)
 			free(game->data->tmp);
 	}
 	got_them_all(game);
