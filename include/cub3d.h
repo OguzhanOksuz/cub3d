@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/14 18:05:39 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/16 17:53:19 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ char	get_top(char **map, int column);
 char	get_bottom(char **map, int column);
 char	get_left(char	*line);
 char	get_right(char *line);
+void	check_inside(t_game *game);
+void	re_format_map(t_game *game);
 //DEBUG
 void	debug_data(t_data *data);
 
