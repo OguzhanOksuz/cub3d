@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/08 22:39:51 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/14 21:39:12 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int main(int ac, char **av)
 	t_game	*game = malloc(sizeof(t_game));
 	
 	parse_cub(game, ac, av); //game->data
-	system("leaks cub3d");
 	return (0);
 }
 

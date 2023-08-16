@@ -6,7 +6,7 @@
 /*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:20:05 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/14 13:20:48 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/16 17:49:40 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ void	free_data(t_data *data)
 {
 	if (data)
 	{
-		if (data->file)
+		if (data->file !=  0)
 			char_arr_free(data->file);
-		if (data->map)
+		if (data->map != 0)
 			char_arr_free(data->map);
-		if (data->tmp)
+		if (data->tmp != 0)
 			free(data->tmp);
-		if (data->no)
+		if (data->no != 0)
 			free(data->no);
-		if (data->so)
+		if (data->so != 0)
 			free(data->so);
-		if (data->ea)
+		if (data->ea != 0)
 			free(data->ea);
-		if (data->we)
+		if (data->we != 0)
 			free(data->we);
-		if (data->f)
+		if (data->f != 0)
 			free(data->f);
-		if (data->c)
+		if (data->c != 0)
 			free(data->c);
 		free(data);
 	}
@@ -74,8 +74,7 @@ void	data_error(int err, t_game *game)
 		write(2, "Invalid file!\n", 14);
 	else if (err == ERR_READ)
 		write(2, "File could not be read!\n", 24);
-//	free_data(game->data);
-//	free(game);
-	system("leaks cub3d");
+	free_data(game->data);
+	free(game);
 	exit(1);
 }
