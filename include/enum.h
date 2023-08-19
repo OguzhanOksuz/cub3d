@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:11:25 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/06 22:14:16 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:18:25 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@
 
 typedef enum s_err //
 {
+	ERR_AC, //Arguman count
+	ERR_EXT, //Extension .cub
+	ERR_ELEM, //Element
+	ERR_ORDER, //Map order
+	ERR_CHAR, //invalid char exist or occurance
+	ERR_WALL, //wall
+	ERR_MALLOC, // MAlloc Error
+	ERR_PATH, //File is not exist
+	ERR_READ, //File is not readable
 	ERR_DEF,
-	ERR_AC,
-	ERR_FILE,
-	ERR_CHAR,
-	ERR_WALLS,
-	ERR_SPACE,
-	ERR_ORDER,
-	ERR_PATH,
 }				t_err; //def kalsin gerisini kafana gore koy
 
 

@@ -6,7 +6,7 @@
 #    By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 16:15:07 by mkaraden          #+#    #+#              #
-#    Updated: 2023/07/31 19:23:55 by mkaraden         ###   ########.fr        #
+#    Updated: 2023/08/16 17:54:00 by ooksuz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ AR	= ar rcs
 RM	= rm -f
 
 CC		= gcc
-CFLAGS	= -I ./include/ 
+CFLAGSA	= -I ./include/ -fsanitize=address
+CFLAGS	= -I ./include/
 CDEBUG	= -g 
 FRMS	=	-framework OpenGL -framework AppKit
 
@@ -26,8 +27,8 @@ SRC_DIR	= src
 OBJ_DIR	= obj
 BIN_DIR	= bin
 
-SRC =	main/main.c		main/hook.c		main/utils.c	main/init.c	 \
-		parser/parse.c 	\
+SRC =	main/main.c		main/hook.c		main/data_error_handler.c	main/init.c	 \
+		parser/parse.c	parser/string_utils.c	parser/get_elements.c	parser/lexer.c	parser/ft_split.c	parser/check_map.c	parser/format_map.c	parser/get_map.c parser/get_player.c	parser/debug.c	parser/check_inside.c	parser/re_format_map.c\
 		raycast/raycast.c	\
 		raycast/raycast_calculate.c		raycast/raycast_draw.c	raycast/raycast_utils.c	\
 		minimap/minimap.c
@@ -44,6 +45,13 @@ NAME	= $(BIN_DIR)/$(BIN)
 
 
 all: $(NAME)
+
+data: $(OBJ) | $(BIN_DIR)
+	@cd ./$(SRC_DIR)/gnl && $(MAKE)
+	@echo "Gnl is compiled."
+	@cd ./mlx && $(MAKE)
+	@$(CC) $(CFLAGSA) $(OBJ) $(ARC) $(FRMS) -o $(NAME)
+	@echo "cub3d data is compiled."
 
 $(NAME): $(OBJ) | $(BIN_DIR)
 	@cd ./$(SRC_DIR)/gnl && $(MAKE)

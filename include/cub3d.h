@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/04 17:18:40 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:53:19 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	print_textures(t_game *game);
 
 int	game_loop(t_game *game);
 
+//unitls 				//-ozi
+void	ft_error(int err, void *ptr);	//-ozi
+void	data_error(int err, t_game *game);
+
 //init
 void	init_stuff(t_game *game);
 void	init_win(t_game *game);
@@ -40,7 +44,30 @@ void	init_textures(t_game *game);
 
 
 //-------------PARSE-----------------------// //oguzhan
+
 void	parse_cub(t_game *game, int ac, char **av);
+int	is_mapline(char *line);
+char	*ft_strrchr(char *str, char ch);
+char	*ft_substr(t_game *game, char *str, int len);
+int	ft_strcmp(char *s1, char *s2);
+void	get_elements(t_game *game, int i);
+void	lexer(t_game *game);
+char	**ft_split(char *str, char sep, t_game *game);
+void	check_map(t_game *gmae);
+int	char_counter(char **map, char ch);
+void	trim_nl(t_game *game);
+void	square_map(t_game *game);
+void	format_map(t_game *game);
+void	get_map_val(t_game *game);
+void	get_player(t_game *game);
+char	get_top(char **map, int column);
+char	get_bottom(char **map, int column);
+char	get_left(char	*line);
+char	get_right(char *line);
+void	check_inside(t_game *game);
+void	re_format_map(t_game *game);
+//DEBUG
+void	debug_data(t_data *data);
 
 //-------------RAYCAST--------------------//
 

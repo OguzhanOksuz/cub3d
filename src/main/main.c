@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/04 17:19:47 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/14 21:39:12 by ooksuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,25 @@ extern int map[MAP_SIZE][MAP_SIZE] = {
 };
 
 //asil
-int main(int ac, char **av)
+int main1(int ac, char **av)
 {
 	t_game	*game = malloc(sizeof(t_game));
+	
 	parse_cub(game, ac, av); //game->data
 	init_stuff(game);
 	mlx_hook(game->win, 2, 0, key_hook, game);
 	routine(game);
 	mlx_loop(game->mlx);
+	return (0);
+}
+
+//ozi
+int main(int ac, char **av)
+{
+	printf("Main Ozi Çalıştı\n");
+	t_game	*game = malloc(sizeof(t_game));
+	
+	parse_cub(game, ac, av); //game->data
 	return (0);
 }
 
