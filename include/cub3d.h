@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/16 17:53:19 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/19 14:04:06 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	data_error(int err, t_game *game);
 //init
 void	init_stuff(t_game *game);
 void	init_win(t_game *game);
-void	init_textures(t_game *game);
+void	init_textures(t_game *game, t_data *data);
 
 
 //-------------PARSE-----------------------// //oguzhan

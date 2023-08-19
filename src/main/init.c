@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:37:19 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 15:54:50 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/19 14:11:50 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	init_stuff(t_game *game)
 {
 	init_win(game);
-	init_textures(game);
+	init_textures(game, game->data);
 
 	
 									
@@ -36,7 +36,31 @@ void	init_win(t_game *game)
 	
 }
 
-void	init_textures(t_game *game)
+void	init_textures(t_game *game, t_data *data)
+{
+	game->textures[NORTH].img = mlx_xpm_file_to_image(game->mlx, data->no, &(game->textures[0].width), &(game->textures[0].height));
+	game->textures[NORTH].addr = mlx_get_data_addr(game->textures[0].img, &(game->textures[0].bits_per_pixel), &(game->textures[0].line_length), &(game->textures[0].endian));
+	
+	game->textures[SOUTH].img = mlx_xpm_file_to_image(game->mlx, data->so, &(game->textures[1].width), &(game->textures[1].height));
+	game->textures[SOUTH].addr = mlx_get_data_addr(game->textures[1].img, &(game->textures[1].bits_per_pixel), &(game->textures[1].line_length), &(game->textures[1].endian));
+
+	game->textures[EAST].img = mlx_xpm_file_to_image(game->mlx, data->ea, &(game->textures[2].width), &(game->textures[2].height));
+	game->textures[EAST].addr = mlx_get_data_addr(game->textures[2].img, &(game->textures[2].bits_per_pixel), &(game->textures[2].line_length), &(game->textures[2].endian));
+
+	game->textures[WEST].img = mlx_xpm_file_to_image(game->mlx, data->we, &(game->textures[3].width), &(game->textures[3].height));
+	game->textures[WEST].addr = mlx_get_data_addr(game->textures[3].img, &(game->textures[3].bits_per_pixel), &(game->textures[3].line_length), &(game->textures[3].endian));
+
+	game->textures[M_BG].img = mlx_xpm_file_to_image(game->mlx, "assests/minimap/mbg.xpm", &(game->textures[6].width), &(game->textures[6].height));
+	game->textures[M_BG].addr = mlx_get_data_addr(game->textures[6].img, &(game->textures[6].bits_per_pixel), &(game->textures[6].line_length), &(game->textures[6].endian));
+
+	game->textures[M_W].img = mlx_xpm_file_to_image(game->mlx, "assests/minimap/mw.xpm", &(game->textures[7].width), &(game->textures[7].height));
+	game->textures[M_W].addr = mlx_get_data_addr(game->textures[7].img, &(game->textures[7].bits_per_pixel), &(game->textures[7].line_length), &(game->textures[7].endian));
+
+	game->textures[M_P].img = mlx_xpm_file_to_image(game->mlx, "assests/minimap/mp.xpm", &(game->textures[8].width), &(game->textures[8].height));
+	game->textures[M_P].addr = mlx_get_data_addr(game->textures[8].img, &(game->textures[8].bits_per_pixel), &(game->textures[8].line_length), &(game->textures[8].endian));
+}
+
+void	init_textures2(t_game *game)
 {
 	char *(txt[]) =
 	{

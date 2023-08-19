@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/14 21:39:12 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/19 14:00:37 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ extern int map[MAP_SIZE][MAP_SIZE] = {
 };
 
 //asil
-int main1(int ac, char **av)
+int main(int ac, char **av)
 {
 	t_game	*game = malloc(sizeof(t_game));
 	
@@ -39,7 +39,7 @@ int main1(int ac, char **av)
 }
 
 //ozi
-int main(int ac, char **av)
+int main3(int ac, char **av)
 {
 	printf("Main Ozi Çalıştı\n");
 	t_game	*game = malloc(sizeof(t_game));
