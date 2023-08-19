@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/19 17:57:51 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/19 19:03:41 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void raycast(t_game *game)
 		while (ray.hit == 0)
 		{
 			ray_step(&ray);
-			if (is_boundary_violated(&ray, game->map_size) || game->data->map[ray.map_y][ray.map_x] != '0')
+			if (is_boundary_violated(&ray, game->map_size) || game->data->map[ray.map_y][ray.map_x] == '1')
 				ray.hit = 1;
 		}
 		

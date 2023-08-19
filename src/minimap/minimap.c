@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:57:21 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/19 15:07:09 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/19 19:30:38 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	draw_minimap(t_game *game)
 	}
 
 	mlx_put_image_to_window(game->mlx, game->win, game->textures[M_P].img,
-					(game->player.x * 8), (game->player.y * 8));
+					((game->player.x - 0.5) * 8), ((game->player.y - 0.5) * 8));
 	
 	
 }
