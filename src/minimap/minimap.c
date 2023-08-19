@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:57:21 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 16:17:12 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/19 15:07:09 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,35 @@
 
 void	draw_minimap(t_game *game)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 0;
-	j = 0;
-	while (i < MAP_SIZE)
+	x = 0;
+	y = 0;
+	while (y < game->map_size)
 	{
-		j = 0;
-		while (j < MAP_SIZE)
+		x = 0;
+		while (x < game->map_size)
 		{
-			draw_tile(game, i, j);
-			j++;
+			draw_tile(game, x, y);
+			x++;
 		}
-		i++;
+		y++;
 	}
 
 	mlx_put_image_to_window(game->mlx, game->win, game->textures[M_P].img,
-					(game->player.y * 8), (game->player.x * 8));
+					(game->player.x * 8), (game->player.y * 8));
 	
 	
 }
 
-void	draw_tile(t_game *game, int i, int j)
+void	draw_tile(t_game *game, int x, int y)
 {
-	if (map[j][i] == 1)
+	if (game->data->map[y][x] == '1')
 		mlx_put_image_to_window(game->mlx, game->win, game->textures[M_W].img,
-					(j * 8), (i * 8));
-	else if (map[j][i] == 0)
+					(x * 8), (y * 8));
+	else if (game->data->map[y][x] == '0')
 		mlx_put_image_to_window(game->mlx, game->win, game->textures[M_BG].img,
-					(j * 8), (i * 8));
+					(x * 8), (y * 8));
 
 }

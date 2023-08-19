@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:02:09 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/19 14:13:27 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/19 18:35:32 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void draw_floor_ceiling(t_game *game,int x, int lineHeight)
 
 	// Draw the ceiling from 0 to the start of the wall.
 	for (int y = 0; y < start; y++)
-		my_mlx_pixel_put(&game->img, x, y, game->data->ceiling); // Blueish color for the ceiling.
+		my_mlx_pixel_put(&game->img, x, y, game->data->ceiling); // Blueish color for the ceiling. game->data->ceiling
 
 	// Draw the floor from the end of the wall to the bottom of the screen.
 	for (int y = end; y < HEIGHT; y++)
-		my_mlx_pixel_put(&game->img, x, y, game->data->floor); // Brownish color for the floor.
+		my_mlx_pixel_put(&game->img, x, y, game->data->floor); // Brownish color for the floor. game->data->floor
 }
 
 void clearimg(t_game *game)

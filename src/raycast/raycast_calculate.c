@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 16:09:47 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/19 18:28:49 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void determine_texture(t_game *game, t_ray *ray, double angle)
 	else
 	{ 
     	if(ray->ray_dir.y > 0) // Check the direction of the ray
-        	ray->texture = &(game->textures[NORTH]);
-    	else
         	ray->texture = &(game->textures[SOUTH]);
+    	else
+        	ray->texture = &(game->textures[NORTH]);
 	}
 }
 

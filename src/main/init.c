@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:37:19 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/19 14:19:34 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/19 18:32:31 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,32 @@ void	init_stuff(t_game *game)
 									
 }
 
+void set_dir(t_game *game, int dir)
+{
+    if (dir == NORTH)
+        game->player.dir = 1.5 * M_PI;
+    else if (dir == SOUTH)
+        game->player.dir = 0.5 * M_PI;
+    else if (dir == EAST)
+        game->player.dir = 0;
+    else if (dir == WEST)
+        game->player.dir = M_PI;
+}
+
+
 void	init_win(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Raycaster");
-	game->player.x = game->data->x; //2 //dir might be mirrored
-	game->player.y = game->data->y;   //2
+	game->player.x = game->data->y; //2 //ozi ters almis
+	game->player.y = game->data->x;   //2
 	game->player.dir = M_PI / 4;
+	set_dir(game, game->data->dir);
+
+	game->map_size = game->data->map_width;
+
+	for (int j = 0; j < game->map_size; j++)
+		printf("%s\n", game->data->map[j]);
 
 	game->img.img = mlx_new_image(game->mlx, 800, 600); 
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length,
