@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:37:19 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/19 14:11:50 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/19 14:19:34 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	init_win(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Raycaster");
-	game->player.x = 2;
-	game->player.y = 2;
+	game->player.x = game->data->x; //2 //dir might be mirrored
+	game->player.y = game->data->y;   //2
 	game->player.dir = M_PI / 4;
 
 	game->img.img = mlx_new_image(game->mlx, 800, 600); 
