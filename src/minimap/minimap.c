@@ -6,12 +6,11 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:57:21 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/19 19:30:38 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:23:46 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	draw_minimap(t_game *game)
 {

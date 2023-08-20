@@ -3,8 +3,8 @@ SO ./assests/textures/GU.xpm
 EA ./assests/textures/DO.xpm
 WE ./assests/textures/BA.xpm
 
-F 255,127,64
-C 0,1,255
+F 120,80,10
+C 0,80,160
 
 
 
