@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:51:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/20 15:24:30 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:10:51 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int key_hook(int key, t_game *game)
 {
 	printf("KEY: %d\n", key);
 	if (key == 53) // Escape key
-		exit(0);
+		data_error(ERR_EXIT, game);
 	double dir_x = cos(game->player.dir);
 	double dir_y = sin(game->player.dir);
 	double speed = 0.15;
@@ -154,6 +154,7 @@ void	print_stats(t_game *game)
 
 	int x = 700;
 	int y = 10;
+	char *str;
 	mlx_string_put(game->mlx, game->win, x, y, RED, "dir: ");
 	mlx_string_put(game->mlx, game->win, x, y + 10, RED, dtoa(game->player.dir));
 

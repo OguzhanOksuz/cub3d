@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:11:25 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/14 13:18:25 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/21 15:02:59 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef enum s_err //
 	ERR_PATH, //File is not exist
 	ERR_READ, //File is not readable
 	ERR_DEF,
+	ERR_EXIT
 }				t_err; //def kalsin gerisini kafana gore koy
 
 

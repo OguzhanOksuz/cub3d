@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/19 14:46:35 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:04:20 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
 //utils
 void init_ray(t_game *game, t_ray *ray, double angle);
 int	is_boundary_violated(t_ray *ray, int map_size);
+void	ft_error(int err, void *ptr);
 
 
 //minimap

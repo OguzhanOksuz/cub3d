@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_error_handler.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:20:05 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/16 17:49:40 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/08/21 15:08:51 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ void	data_error(int err, t_game *game)
 		write(2, "Invalid file!\n", 14);
 	else if (err == ERR_READ)
 		write(2, "File could not be read!\n", 24);
+	else if (err == ERR_EXIT)
+		write(1, "Pressed esc\n", 12);
 	free_data(game->data);
 	free(game);
+	system("leaks cub3d");
 	exit(1);
 }
