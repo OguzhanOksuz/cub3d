@@ -6,14 +6,14 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/19 18:28:49 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:07:44 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 //calculate x,y step and nearest x,y distances
-void calculate_step_and_dist(t_game *game, t_ray *ray)
+void	calculate_step_and_dist(t_game *game, t_ray *ray)
 {
 	if (ray->ray_dir.x < 0)
 	{
@@ -38,28 +38,17 @@ void calculate_step_and_dist(t_game *game, t_ray *ray)
 	}
 }
 
-//
-void calculate_perpetual(t_game *game, t_ray *ray, double angle) 
-{
-	double wallX = 0;
-	
-	if (ray->hit && ray->side == 0)
-	{
+//perp distance
+void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
+{	
+	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map_x - game->player.x + (1 - ray->step_x) / 2) / ray->ray_dir.x;	
-	}
-	else if (ray->hit)
-	{
-		ray->perp_wall_dist = (ray->map_y - game->player.y + (1 - ray->step_y) / 2) / ray->ray_dir.y;
-	}
 	else
-		ray->perp_wall_dist = HEIGHT;
-	
-	
-
+		ray->perp_wall_dist = (ray->map_y - game->player.y + (1 - ray->step_y) / 2) / ray->ray_dir.y;
 }
 
 // Assign the texture based on the wall hit
-void determine_texture(t_game *game, t_ray *ray, double angle) 
+void	determine_texture(t_game *game, t_ray *ray, double angle)
 {
 	// If the ray hit a wall on the x-axis (East/West wall)
 	if(ray->side == 0)
@@ -79,26 +68,24 @@ void determine_texture(t_game *game, t_ray *ray, double angle)
 	}
 }
 
-void calculate_texture_x(t_game *game, t_ray *ray, double angle)
+//slack de resmi var
+void	calculate_texture_x(t_game *game, t_ray *ray, double angle)
 {
-	double wallX = 0;
+	double wallX;
 	
-	if (ray->hit && ray->side == 0)
-	{		
+	if (ray->side == 0) //EAST WEST
 		wallX = game->player.y + ray->perp_wall_dist * ray->ray_dir.y;
-		wallX -=floor((ray->map_x));
-	}
-	else if (ray->hit)
-	{	
+	else
 		wallX = game->player.x + ray->perp_wall_dist * ray->ray_dir.x;
-		wallX -=floor((ray->map_y));
-	}
 	
 	wallX -= floor((wallX));
-
+	
 	ray->tex_x = (int)(wallX * (double)(ray->texture->width));
-	if ((ray->side == 0 && ray->ray_dir.x > 0) || (ray->side == 1 && ray->ray_dir.y < 0))
-		ray->tex_x = ray->texture->width - ray->tex_x - 1;
+	
+	//mirror check
+	/*if ((ray->side == 0 && ray->ray_dir.x > 0) || (ray->side == 1 && ray->ray_dir.y < 0))
+		ray->tex_x = ray->texture->width - ray->tex_x - 1;*/
+        ray->tex_x = ray->texture->width - ray->tex_x - 1;
 	
 	// Correct the "fishbowl effect"
 	ray->perp_wall_dist *= cos(game->player.dir - angle);

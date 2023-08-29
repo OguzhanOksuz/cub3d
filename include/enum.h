@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:11:25 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/21 15:02:59 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/29 18:11:28 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #define MAP_SIZE 10
 #define FOV M_PI / 3
 #define RAY_STEP 0.01
+#define ANGLE_STEP FOV / WIDTH;
 
 typedef enum s_err //
 {
