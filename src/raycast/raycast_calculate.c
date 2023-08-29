@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/29 19:07:44 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/29 21:07:34 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,8 @@ void	calculate_texture_x(t_game *game, t_ray *ray, double angle)
 	ray->tex_x = (int)(wallX * (double)(ray->texture->width));
 	
 	//mirror check
-	/*if ((ray->side == 0 && ray->ray_dir.x > 0) || (ray->side == 1 && ray->ray_dir.y < 0))
-		ray->tex_x = ray->texture->width - ray->tex_x - 1;*/
-        ray->tex_x = ray->texture->width - ray->tex_x - 1;
+	if ((ray->side == 0 && ray->ray_dir.x > 0) || (ray->side == 1 && ray->ray_dir.y > 0))
+    	ray->tex_x = ray->texture->width - ray->tex_x - 1;
 	
 	// Correct the "fishbowl effect"
 	ray->perp_wall_dist *= cos(game->player.dir - angle);

@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:03:46 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/29 18:31:16 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/29 20:47:44 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,32 @@ int	is_boundary_violated(t_ray *ray, int map_size)
 	if (ray->map_x >= map_size || ray->map_y >= map_size)
 		return (1);
 	return (0);
+}
+
+void	clearimg(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = -1;
+	while (++i < WIDTH)
+	{
+		while (++j < HEIGHT)
+		{
+			my_mlx_pixel_put(&(game->img), i, j, 0x00000000);
+		}
+	}
+}
+
+void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color)
+{
+	char	*dst;
+	int		offset;
+
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return ;
+	offset = (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = data->addr + offset;
+	*(unsigned int *)dst = color;
 }

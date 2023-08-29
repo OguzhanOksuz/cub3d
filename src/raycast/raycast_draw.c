@@ -6,78 +6,83 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:02:09 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/29 17:23:40 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/29 20:48:47 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-void draw_textured_line(t_game *game, t_ray *ray, int x, int lineHeight)
+
+int	get_tex_y(int y, t_ray *ray, int line_height);
+unsigned int	get_pixel_color(int tex_y, t_ray *ray);
+
+//Calculate the start and end points of the line on the screen
+void	draw_textured_line(t_game *game, t_ray *ray, int x, int line_height)
 {
-    // Calculate the start and end points of the line on the screen
-    int lineStart = (HEIGHT - lineHeight) / 2;
-    int lineEnd = (HEIGHT + lineHeight) / 2;
+	int				line_start;
+	int				line_end;
+	unsigned int	pixel_color;
+	int				y;
+	int				tex_y;
 
-    // Constants for the texture Y-coordinate calculation
-    double textureHeight = (double)ray->texture->height;
-    double halfScreenHeight = HEIGHT / 2.0;
-    double halfLineHeight = lineHeight / 2.0;
-    int textureByteSize = ray->texture->bits_per_pixel / 8;
-
-    for (int y = lineStart; y < lineEnd; y++)
-    {
-        // Calculate the proportion of y within the lineHeight and scale it by textureHeight
-        double d = (y - halfScreenHeight + halfLineHeight) * textureHeight / lineHeight;
-        int texY = (int)d;
-        
-        // Ensure the texY is within the bounds of the texture
-        if(texY < 0) texY = 0;
-        if(texY >= textureHeight) texY = textureHeight - 1;
-
-        // Calculate the memory offset for the desired pixel in the texture
-        int textureOffset = texY * ray->texture->line_length + ray->tex_x * textureByteSize;
-        
-        // Extract the color from the texture using the offset
-        unsigned int pixelColor = *(unsigned int *)(ray->texture->addr + textureOffset);
-        
-        // Draw the pixel on the screen at the given x,y position
-        my_mlx_pixel_put(&game->img, x, y, pixelColor);
-    }
-}
-
-void draw_floor_ceiling(t_game *game,int x, int lineHeight)
-{
-	int start = (HEIGHT - lineHeight) / 2;
-	int end = (HEIGHT + lineHeight) / 2;
-
-	// Draw the ceiling from 0 to the start of the wall.
-	for (int y = 0; y < start; y++)
-		my_mlx_pixel_put(&game->img, x, y, game->data->ceiling); // Blueish color for the ceiling. game->data->ceiling
-
-	// Draw the floor from the end of the wall to the bottom of the screen.
-	for (int y = end; y < HEIGHT; y++)
-		my_mlx_pixel_put(&game->img, x, y, game->data->floor); // Brownish color for the floor. game->data->floor
-}
-
-void clearimg(t_game *game)
-{
-	for (size_t i = 0; i < WIDTH; i++)
+	line_start = (HEIGHT - line_height) / 2;
+	line_end = (HEIGHT + line_height) / 2;
+	y = line_start - 1;
+	while (++y < line_end)
 	{
-		for (size_t j = 0; j < HEIGHT; j++)
-		{
-			my_mlx_pixel_put(&(game->img), i, j, 0x00000000);
-		}
+		tex_y = get_tex_y(y, ray, line_height);
+		pixel_color = get_pixel_color(tex_y, ray);
+		my_mlx_pixel_put(&game->img, x, y, pixel_color);
 	}
 }
 
-
-void my_mlx_pixel_put(t_img_data *data, int x, int y, int color)
+// Calculate the memory offset for the desired pixel in the texture and
+// Extract the color from the texture using the offset
+unsigned int	get_pixel_color(int tex_y, t_ray *ray)
 {
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-		return ;
-		
-	char *dst;
-	int offset = (y * data->line_length + x * (data->bits_per_pixel / 8));
-	
-	dst = data->addr + offset;
-	*(unsigned int *)dst = color;
+	unsigned int	pixel_color;
+	int				texture_byte_size;
+	int				texture_offset;
+
+	texture_byte_size = ray->texture->bits_per_pixel / 8;
+	texture_offset = (tex_y * ray->texture->line_length) + ray->tex_x * texture_byte_size;
+	pixel_color = *(unsigned int *)(ray->texture->addr + texture_offset);
+	return (pixel_color);
+}
+
+// Calculate the proportion of y within the line_height and scale it by texture_height
+// and ensure it is within the bounds of the texture
+int	get_tex_y(int y, t_ray *ray, int line_height)
+{
+	double	d;
+	double	half_screen_height;
+	double	half_line_height;
+	double	texture_height;
+	int		tex_y;
+
+	half_screen_height = HEIGHT / 2.0;
+	half_line_height = line_height / 2.0;
+	texture_height = (double)ray->texture->height;
+	d = (y - half_screen_height + half_line_height) * texture_height / line_height;
+	tex_y = (int)d;
+	if (tex_y < 0)
+		tex_y = 0;
+	if (tex_y >= texture_height)
+		tex_y = texture_height - 1;
+	return (tex_y);
+}
+
+void	draw_floor_ceiling(t_game *game, int x, int lineHeight)
+{
+	int	start;
+	int	end;
+	int	y;
+
+	start = (HEIGHT - lineHeight) / 2;
+	end = (HEIGHT + lineHeight) / 2;
+	y = -1;
+	while (++y < start)
+		my_mlx_pixel_put(&game->img, x, y, game->data->ceiling);
+	y = end - 1;
+	while (++y < HEIGHT)
+		my_mlx_pixel_put(&game->img, x, y, game->data->floor);
 }
