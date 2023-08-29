@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:03:46 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/19 14:46:23 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:32:56 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ void	init_ray(t_game *game, t_ray *ray, double angle)
 	ray->delta_dist.y = fabs(1 / ray->ray_dir.y);
 
 	ray->hit = 0;
+}
+
+int	is_hit(t_ray *ray, t_game *game)
+{
+	if (is_boundary_violated(ray, game->map_size))
+		return (1);
+	if (game->data->map[ray->map_y][ray->map_x] == '1')
+		return (1);
+	return (0);
 }
 
 //check boundaries

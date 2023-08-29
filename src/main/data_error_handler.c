@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:20:05 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/21 15:08:51 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:35:04 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ void	data_error(int err, t_game *game)
 		write(1, "Pressed esc\n", 12);
 	free_data(game->data);
 	free(game);
-	system("leaks cub3d");
+	//system("leaks cub3d");
 	exit(1);
 }
