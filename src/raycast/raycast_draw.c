@@ -6,14 +6,11 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:02:09 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/29 20:48:47 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/09/05 09:01:17 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	get_tex_y(int y, t_ray *ray, int line_height);
-unsigned int	get_pixel_color(int tex_y, t_ray *ray);
 
 //Calculate the start and end points of the line on the screen
 void	draw_textured_line(t_game *game, t_ray *ray, int x, int line_height)
@@ -49,7 +46,8 @@ unsigned int	get_pixel_color(int tex_y, t_ray *ray)
 	return (pixel_color);
 }
 
-// Calculate the proportion of y within the line_height and scale it by texture_height
+// Calculate the proportion of y within the line_height
+// and scale it by texture_height
 // and ensure it is within the bounds of the texture
 int	get_tex_y(int y, t_ray *ray, int line_height)
 {

@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/09/05 08:55:24 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/09/05 09:08:57 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,36 +51,36 @@ void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
 void	determine_texture(t_game *game, t_ray *ray, double angle)
 {
 	// If the ray hit a wall on the x-axis (East/West wall)
-	if(ray->side == 0)
-	{ 
-    	if(ray->ray_dir.x > 0) // Check the direction of the ray
-        	ray->texture = &(game->textures[EAST]);
-    	else
-        	ray->texture = &(game->textures[WEST]);
+	if (ray->side == 0)
+	{
+		if (ray->ray_dir.x > 0) // Check the direction of the ray
+			ray->texture = &(game->textures[EAST]);
+		else
+		ray->texture = &(game->textures[WEST]);
 	}
 	// If the ray hit a wall on the y-axis (North/South wall)
 	else
 	{ 
-    	if(ray->ray_dir.y > 0) // Check the direction of the ray
-        	ray->texture = &(game->textures[SOUTH]);
-    	else
-        	ray->texture = &(game->textures[NORTH]);
+		if (ray->ray_dir.y > 0) // Check the direction of the ray
+			ray->texture = &(game->textures[SOUTH]);
+		else
+			ray->texture = &(game->textures[NORTH]);
 	}
 }
 
 //slack de resmi var
 void	calculate_texture_x(t_game *game, t_ray *ray, double angle)
 {
-	double wallX;
+	double wall_x;
 	
 	if (ray->side == 0) //EAST WEST
-		wallX = game->player.y + ray->perp_wall_dist * ray->ray_dir.y;
+		wall_x = game->player.y + ray->perp_wall_dist * ray->ray_dir.y;
 	else
-		wallX = game->player.x + ray->perp_wall_dist * ray->ray_dir.x;
+		wall_x = game->player.x + ray->perp_wall_dist * ray->ray_dir.x;
 	
-	wallX -= floor((wallX));
+	wall_x -= floor((wall_x));
 	
-	ray->tex_x = (int)(wallX * (double)(ray->texture->width));
+	ray->tex_x = (int)(wall_x * (double)(ray->texture->width));
 	
 	//mirror check
 	if ((ray->side == 0 && ray->ray_dir.x < 0) || (ray->side == 1 && ray->ray_dir.y > 0))

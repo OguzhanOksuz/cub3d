@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/29 20:38:33 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/09/05 09:01:55 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void draw_floor_ceiling(t_game *game,int x, int lineHeight);
 void draw_floor_ceiling_textured(t_game *game, t_ray *ray, int x, int lineHeight);
 void clearimg(t_game *game);
 void my_mlx_pixel_put(t_img_data *data, int x, int y, int color);
+int             get_tex_y(int y, t_ray *ray, int line_height);
+unsigned int    get_pixel_color(int tex_y, t_ray *ray);
 
 //utils
 void	init_ray(t_game *game, t_ray *ray, double angle);
