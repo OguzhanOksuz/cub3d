@@ -1,14 +1,14 @@
 
 # Cub3d
 
-Type ```make run``` to run it.
+Type ```make run``` to run it. \
 works in MacOs
 
 ## Input file
 
-*.cub
-path for textures
-floor and ceiling colors
+*.cub \
+path for textures \
+floor and ceiling colors \
 map
 
 
