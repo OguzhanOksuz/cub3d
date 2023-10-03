@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/09/05 09:08:57 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/03 18:36:55 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,29 @@ void	calculate_step_and_dist(t_game *game, t_ray *ray)
 }
 
 //perp distance
-void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
-{	
-	if (ray->side == 0)
-		ray->perp_wall_dist = (ray->map_x - game->player.x + (1 - ray->step_x) / 2) / ray->ray_dir.x;	
-	else
-		ray->perp_wall_dist = (ray->map_y - game->player.y + (1 - ray->step_y) / 2) / ray->ray_dir.y;
+void calculate_perpetual(t_game *game, t_ray *ray, double angle)
+{   
+    // Debug Printing
+    printf("DEBUG INFO BEFORE CALCULATION:\n");
+    printf("ray->map_x: %f\n", ray->map_x);
+    printf("game->player.x: %f\n", game->player.x);
+    printf("ray->step_x: %f\n", ray->step_x);
+    printf("ray->ray_dir.x: %f\n", ray->ray_dir.x);
+    printf("ray->map_y: %f\n", ray->map_y);
+    printf("game->player.y: %f\n", game->player.y);
+    printf("ray->step_y: %f\n", ray->step_y);
+    printf("ray->ray_dir.y: %f\n", ray->ray_dir.y);
+    printf("--------------------------\n");
+
+    if (ray->side == 0)
+        ray->perp_wall_dist = (ray->map_x - game->player.x + (1 - ray->step_x) / 2) / ray->ray_dir.x;   
+    else
+        ray->perp_wall_dist = (ray->map_y - game->player.y + (1 - ray->step_y) / 2) / ray->ray_dir.y;
+
+    // Debug Printing After Calculation
+    printf("DEBUG INFO AFTER CALCULATION:\n");
+    printf("ray->perp_wall_dist: %f\n", ray->perp_wall_dist);
+    printf("--------------------------\n");
 }
 
 // Assign the texture based on the wall hit
@@ -88,4 +105,7 @@ void	calculate_texture_x(t_game *game, t_ray *ray, double angle)
 	
 	// Correct the "fishbowl effect"
 	ray->perp_wall_dist *= cos(game->player.dir - angle);
+	if (fabs(ray->perp_wall_dist) < 1e-10)
+		ray->perp_wall_dist = 1e30;
+	printf("PERPETUALaaaaaa: %f\n", ray->perp_wall_dist);
 }

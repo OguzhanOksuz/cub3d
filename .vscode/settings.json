@@ -8,6 +8,7 @@
 		"chrono": "c",
 		"unordered_map": "c",
 		"stdio.h": "c",
-		"cub3d.h": "c"
+		"cub3d.h": "c",
+		"__node_handle": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:02:09 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/09/05 09:01:17 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/03 18:16:12 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@ void	draw_textured_line(t_game *game, t_ray *ray, int x, int line_height)
 	int				tex_y;
 
 	line_start = (HEIGHT - line_height) / 2;
+	if (line_start < 0 || line_start > HEIGHT)
+		line_start = 0;
 	line_end = (HEIGHT + line_height) / 2;
-	y = line_start - 1;
+	if (line_end > HEIGHT || line_end < 0)
+		line_end = HEIGHT;
+	printf("LINE START %d LINE END %d Y %d \n", line_start, line_end, line_start - 1);
+	y = line_start;
 	while (++y < line_end)
 	{
 		tex_y = get_tex_y(y, ray, line_height);

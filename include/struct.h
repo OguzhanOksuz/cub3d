@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:14:38 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/29 18:35:45 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:02:24 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,21 @@ typedef struct s_player
 	double x;
 	double y;
 	double dir;
+	
+	double dir_x;
+	double dir_y;
+	double speed;
 } t_player;
 
 typedef struct s_game
 {
 	void *mlx;
 	void *win;
+
+	int debug;
 	t_player player;
+
+	int key;
 
 	//img to put raycasting results
 	t_img_data img;

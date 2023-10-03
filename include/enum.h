@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:11:25 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/08/29 18:11:28 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:12:23 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ typedef enum s_keys
 	ARR_L = 123,
 	ARR_R = 124,
 }				t_keys;
+
+typedef enum s_keydir
+{
+	KEY_WEST = 13,
+	KEY_LEFT = 0,
+	KEY_SOUTH = 1,
+	KEY_EAST = 2,
+	ARR_LEFT = 123,
+	ARR_RIGHT = 124,
+}				t_keydir;
 
 typedef enum e_color
 {
