@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:02:09 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/03 18:16:12 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 01:30:10 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	draw_textured_line(t_game *game, t_ray *ray, int x, int line_height)
 	line_end = (HEIGHT + line_height) / 2;
 	if (line_end > HEIGHT || line_end < 0)
 		line_end = HEIGHT;
-	printf("LINE START %d LINE END %d Y %d \n", line_start, line_end, line_start - 1);
 	y = line_start;
 	while (++y < line_end)
 	{
@@ -46,7 +45,8 @@ unsigned int	get_pixel_color(int tex_y, t_ray *ray)
 	int				texture_offset;
 
 	texture_byte_size = ray->texture->bits_per_pixel / 8;
-	texture_offset = (tex_y * ray->texture->line_length) + ray->tex_x * texture_byte_size;
+	texture_offset = (tex_y * ray->texture->line_length);
+	texture_offset += ray->tex_x * texture_byte_size;
 	pixel_color = *(unsigned int *)(ray->texture->addr + texture_offset);
 	return (pixel_color);
 }
@@ -54,7 +54,7 @@ unsigned int	get_pixel_color(int tex_y, t_ray *ray)
 // Calculate the proportion of y within the line_height
 // and scale it by texture_height
 // and ensure it is within the bounds of the texture
-int	get_tex_y(int y, t_ray *ray, int line_height)
+int	get_tex_y2(int y, t_ray *ray, int line_height)
 {
 	double	d;
 	double	half_screen_height;
@@ -67,12 +67,46 @@ int	get_tex_y(int y, t_ray *ray, int line_height)
 	texture_height = (double)ray->texture->height;
 	d = (y - half_screen_height + half_line_height) * texture_height / line_height;
 	tex_y = (int)d;
-	if (tex_y < 0)
+	/*if (tex_y < 0)
 		tex_y = 0;
 	if (tex_y >= texture_height)
-		tex_y = texture_height - 1;
+		tex_y = texture_height - 1;*/
 	return (tex_y);
 }
+
+/**
+ * Calculate the y-coordinate in a texture that corresponds to a y-coordinate on the screen.
+ * 
+ * @param y           The y-coordinate on the screen.
+ * @param ray         The ray information containing texture details.
+ * @param line_height The height of the line segment being rendered on the screen.
+ * 
+ * @return The corresponding y-coordinate on the texture.
+ */
+int get_tex_y(int y, t_ray *ray, int line_height)
+{
+    double textureHeight = (double) ray->texture->height;
+    double halfScreenHeight = HEIGHT / 2.0;
+    double halfLineHeight = line_height / 2.0;
+
+    // Calculate the proportional position of 'y' within the line height,
+    // then scale it according to the texture's height.
+    double proportionalPosition = y - halfScreenHeight + halfLineHeight;
+    double d = proportionalPosition * textureHeight / line_height;
+    
+    // Convert the double position to an integer for pixel indexing
+    int textureY = (int)d;
+
+    // Ensure the texture y-coordinate is within the texture's bounds
+    if (textureY < 0) {
+        textureY = 0;
+    } else if (textureY >= textureHeight) {
+        textureY = textureHeight - 1;
+    }
+
+    return textureY;
+}
+
 
 void	draw_floor_ceiling(t_game *game, int x, int lineHeight)
 {

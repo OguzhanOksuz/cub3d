@@ -6,11 +6,13 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/03 18:32:21 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 01:20:32 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int safe_divide(int numerator, double denominator);
 
 //raycast main
 void	raycast(t_game *game)
@@ -30,12 +32,12 @@ void	raycast(t_game *game)
 		{
 			ray_step(&ray);
 			if (is_hit(&ray, game))
-				ray.hit = 1; //calculate fonklarda if hit kontrollerini kaldirdim
+				ray.hit = 1;
 		}
 		calculate_perpetual(game, &ray, angle);
 		determine_texture(game, &ray, angle);
 		calculate_texture_x(game, &ray, angle);
-		line_height = (int)(HEIGHT / ray.perp_wall_dist);
+		line_height = safe_divide(HEIGHT, ray.perp_wall_dist);
 		printf("PERPETUAL: %f LINE_HEIGHT: %d \n", ray.perp_wall_dist, line_height);
 		draw_textured_line(game, &ray, x, line_height);
 		draw_floor_ceiling(game, x, line_height);
@@ -58,4 +60,11 @@ void	ray_step(t_ray *ray)
 		ray->map_y += ray->step_y;
 		ray->side = 1;
 	}
+}
+
+int safe_divide(int numerator, double denominator)
+{
+    if(denominator < 1e-5)
+        denominator = 0.001;
+    return (int)(numerator / denominator);
 }

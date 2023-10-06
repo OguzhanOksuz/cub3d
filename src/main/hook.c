@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:51:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/03 17:50:46 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 00:38:57 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,23 @@ void	ft_move(t_player player, int dir, t_game *game)
 {
 	if (dir == NORTH)
 	{
-		player.x += player.dir_x * player.speed;
-		player.y += player.dir_y * player.speed;
+		player.x += player.dir_x * MOVE_SPEED;
+		player.y += player.dir_y * MOVE_SPEED;
 	}
 	if (dir == SOUTH)
 	{
-		player.x -= player.dir_x * player.speed;
-		player.y -= player.dir_y * player.speed;
+		player.x -= player.dir_x * MOVE_SPEED;
+		player.y -= player.dir_y * MOVE_SPEED;
 	}
 	if (dir == EAST)
 	{
-		player.x -= player.dir_y * player.speed;
-		player.y += player.dir_x * player.speed;
+		player.x -= player.dir_y * MOVE_SPEED;
+		player.y += player.dir_x * MOVE_SPEED;
 	}
 	if (dir == WEST)
 	{
-		player.x += player.dir_y * player.speed;
-		player.y -= player.dir_x * player.speed;
+		player.x += player.dir_y * MOVE_SPEED;
+		player.y -= player.dir_x * MOVE_SPEED;
 	}
 	ft_collision(player.x, player.y, &(game->player), game->data->map);
 }
@@ -66,13 +66,13 @@ void	ft_turn(t_player *player, int dir)
 {
 	if (dir == WEST)
 	{
-		player->dir -= 0.03;
+		player->dir -= TURN_SPEED;
 		if (player->dir < 0)
 			player->dir += 2 * M_PI;
 	}
 	if (dir == EAST)
 	{
-		player->dir += 0.03;
+		player->dir += TURN_SPEED;
 		if (player->dir > 2 * M_PI)
 			player->dir -= 2 * M_PI;
 	}
@@ -81,7 +81,7 @@ void	ft_turn(t_player *player, int dir)
 //collison check
 void	ft_collision(double new_x, double new_y, t_player *player, char **map)
 {
-	printf("X: %f Y: %f HIT TO %c\n", new_x, new_y, map[(int)new_y][(int)new_x]);
+	//printf("X: %f Y: %f HIT TO %c\n", new_x, new_y, map[(int)new_y][(int)new_x]);
 	if (map[(int)(new_y)][(int)(new_x)] != '1')
 	{
 		player->x = new_x;

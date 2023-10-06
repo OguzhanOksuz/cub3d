@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/03 17:42:28 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 01:21:24 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 //-------------MAIN-----------------------//
 //main
 int		ft_loop(t_game *game);
+
+
 
 //init
 void	init_stuff(t_game *game);
@@ -51,6 +53,7 @@ void	data_error(int err, t_game *game);
 void raycast(t_game *game);
 void ray_step(t_ray *ray);
 
+
 //calculate
 void calculate_step_and_dist(t_game *game, t_ray *ray);
 void calculate_perpetual(t_game *game, t_ray *ray, double angle);
@@ -70,6 +73,7 @@ unsigned int    get_pixel_color(int tex_y, t_ray *ray);
 void	init_ray(t_game *game, t_ray *ray, double angle);
 int		is_boundary_violated(t_ray *ray, int map_size);
 int		is_hit(t_ray *ray, t_game *game);
+int		safe_divide(int numerator, double denominator);
 
 void	ft_error(int err, void *ptr);
 
