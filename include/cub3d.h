@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 08:59:17 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 15:50:23 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void			calculate_step_and_dist(t_game *game, t_ray *ray);
 void			calculate_perpetual(t_game *game, t_ray *ray, double angle);
 void			determine_texture(t_game *game, t_ray *ray, double angle);
 void			calculate_texture_x(t_game *game, t_ray *ray, double angle);
+void			fix_mirror(t_ray *ray);
 
 //draw
 void			draw_textured_line(t_game *game, t_ray *ray,
