@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:14:38 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 00:38:03 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 05:27:13 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 # define STRUCT_H
 
 //.cub data 
-typedef struct s_data
-{
-	char	**file; //  -Ozi
+/*
+char	**file; //  -Ozi
 	char	**map; //map
 	char	*tmp; 
 
@@ -34,6 +33,31 @@ typedef struct s_data
 	char	*we; //raw-
 	char	*f; //raw-
 	char	*c; //raw-
+	
+
+	int		floor; //t_color enum daki gibi ver colorlari //final
+	int		ceiling; // final
+*/
+typedef struct s_data
+{
+	char	**file;
+	char	**map;
+	char	*tmp;
+
+	int		map_width;
+	int		map_height;
+
+	int		dir;
+	
+	int		x;
+	int		y; //final
+	
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
+	char	*f;
+	char	*c;
 	
 
 	int		floor; //t_color enum daki gibi ver colorlari //final
@@ -118,6 +142,13 @@ typedef struct s_player
 	double speed;
 } t_player;
 
+/*//img to put raycasting results
+	t_img_data img;
+	
+	//int map[MAP_SIZE][MAP_SIZE];
+	t_data *data;
+	t_txt_data textures[9]; //6 + 3
+	*/
 typedef struct s_game
 {
 	void *mlx;
@@ -128,16 +159,14 @@ typedef struct s_game
 
 	int key;
 
-	//img to put raycasting results
+
 	t_img_data img;
 	
-	//int map[MAP_SIZE][MAP_SIZE];
+
 	t_data *data;
 
 	int	map_size;
 
-	t_txt_data textures[9]; //6 + 3
-} t_game;
-
-
+	t_txt_data textures[9];
+}	t_game;
 #endif

@@ -6,12 +6,11 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 17:58:09 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 00:37:52 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 02:34:21 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 // void	ft_error(int err, void *ptr)
 // {

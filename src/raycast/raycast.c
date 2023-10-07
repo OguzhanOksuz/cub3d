@@ -6,13 +6,11 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 01:20:32 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 02:27:59 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int safe_divide(int numerator, double denominator);
 
 //raycast main
 void	raycast(t_game *game)
@@ -38,12 +36,12 @@ void	raycast(t_game *game)
 		determine_texture(game, &ray, angle);
 		calculate_texture_x(game, &ray, angle);
 		line_height = safe_divide(HEIGHT, ray.perp_wall_dist);
-		printf("PERPETUAL: %f LINE_HEIGHT: %d \n", ray.perp_wall_dist, line_height);
 		draw_textured_line(game, &ray, x, line_height);
 		draw_floor_ceiling(game, x, line_height);
 		angle += ANGLE_STEP;
 	}
 }
+//printf("PERPETUAL: %f LINE_HEIGHT: %d \n", ray.perp_wall_dist, line_height);
 
 //take one step
 void	ray_step(t_ray *ray)
@@ -62,9 +60,9 @@ void	ray_step(t_ray *ray)
 	}
 }
 
-int safe_divide(int numerator, double denominator)
+int	safe_divide(int numerator, double denominator)
 {
-    if(denominator < 1e-5)
-        denominator = 0.001;
-    return (int)(numerator / denominator);
+	if (denominator < 1e-5)
+		denominator = 0.001;
+	return ((int)(numerator / denominator));
 }

@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:20:05 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/10/03 16:21:03 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 02:37:19 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	free_data(t_data *data)
 {
 	if (data)
 	{
-		if (data->file !=  0)
+		if (data->file != 0)
 			char_arr_free(data->file);
 		if (data->map != 0)
 			char_arr_free(data->map);

@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:51:01 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 00:38:57 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 02:42:46 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	ft_turn(t_player *player, int dir)
 }
 
 //collison check
+//printf("X: %f Y: %f HIT TO %c\n", new_x, new_y, map[(int)new_y][(int)new_x]);
 void	ft_collision(double new_x, double new_y, t_player *player, char **map)
 {
-	//printf("X: %f Y: %f HIT TO %c\n", new_x, new_y, map[(int)new_y][(int)new_x]);
 	if (map[(int)(new_y)][(int)(new_x)] != '1')
 	{
 		player->x = new_x;

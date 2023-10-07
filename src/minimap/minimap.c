@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:57:21 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/03 16:52:59 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 02:34:13 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_minimap(t_game *game)
 	int	y;
 
 	if (!(game->debug))
-		return;
+		return ;
 	x = 0;
 	y = 0;
 	while (y < game->map_size)

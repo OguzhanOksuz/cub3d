@@ -6,7 +6,7 @@
 #    By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 16:15:07 by mkaraden          #+#    #+#              #
-#    Updated: 2023/10/07 00:55:53 by mkaraden         ###   ########.fr        #
+#    Updated: 2023/10/07 04:32:05 by mkaraden         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC_DIR	= src
 OBJ_DIR	= obj
 BIN_DIR	= bin
 
-SRC =	main/main.c		main/hook.c		main/data_error_handler.c	main/init.c main/debug.c	main/utils.c 	 \
+SRC =	main/main.c		main/hook.c		main/data_error_handler.c	main/init.c main/debug.c	main/utils.c main/dtoa.c	 \
 		parser/parse.c	parser/string_utils.c	parser/get_elements.c	parser/lexer.c	parser/ft_split.c	parser/check_map.c	parser/format_map.c	parser/get_map.c parser/get_player.c	parser/debug.c	parser/check_inside.c	parser/re_format_map.c\
 		raycast/raycast.c	\
 		raycast/raycast_calculate.c		raycast/raycast_draw.c	raycast/raycast_utils.c	\

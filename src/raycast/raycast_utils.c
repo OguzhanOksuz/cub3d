@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:03:46 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/03 18:36:02 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 02:22:43 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void	init_ray(t_game *game, t_ray *ray, double angle)
 	ray->map_y = (int)game->player.y;
 	ray->delta_dist.x = fabs(1 / ray->ray_dir.x);
 	ray->delta_dist.y = fabs(1 / ray->ray_dir.y);
-	if (fabs(ray->delta_dist.x) < 1e-10)
-		ray->delta_dist.x = 1e30;
-	if (fabs(ray->delta_dist.y) < 1e-10)
-		ray->delta_dist.y = 1e30;
 	ray->hit = 0;
 }
 
