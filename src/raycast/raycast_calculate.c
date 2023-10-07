@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 02:32:29 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 14:42:55 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,33 @@ void	calculate_step_and_dist(t_game *game, t_ray *ray)
 //perp distance
 void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
 {
+	while (ray->hit == 0)
+	{
+		ray_step(ray);
+		if (is_hit(ray, game))
+			ray->hit = 1;
+	}
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map_x - game->player.x + (1 - ray->step_x) / 2) / ray->ray_dir.x;
 	else
 		ray->perp_wall_dist = (ray->map_y - game->player.y + (1 - ray->step_y) / 2) / ray->ray_dir.y;
 }
 
-// Assign the texture based on the wall hit
+//Assign the texture based on the wall hit
+//side == 0 -> // If the ray hit a wall on the x-axis (East/West wall)
+//side == 1 -> // If the ray hit a wall on the y-axis (North/South wall)
 void	determine_texture(t_game *game, t_ray *ray, double angle)
 {
-	// If the ray hit a wall on the x-axis (East/West wall)
 	if (ray->side == 0)
 	{
-		if (ray->ray_dir.x > 0) // Check the direction of the ray
+		if (ray->ray_dir.x > 0)
 			ray->texture = &(game->textures[EAST]);
 		else
 			ray->texture = &(game->textures[WEST]);
 	}
-	// If the ray hit a wall on the y-axis (North/South wall)
 	else
 	{
-		if (ray->ray_dir.y > 0) // Check the direction of the ray
+		if (ray->ray_dir.y > 0)
 			ray->texture = &(game->textures[SOUTH]);
 		else
 			ray->texture = &(game->textures[NORTH]);
@@ -73,7 +79,7 @@ void	calculate_texture_x(t_game *game, t_ray *ray, double angle)
 {
 	double	wall_x;
 
-	if (ray->side == 0) //EAST WEST
+	if (ray->side == 0)
 		wall_x = game->player.y + ray->perp_wall_dist * ray->ray_dir.y;
 	else
 		wall_x = game->player.x + ray->perp_wall_dist * ray->ray_dir.x;

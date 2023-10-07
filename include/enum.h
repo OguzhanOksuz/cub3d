@@ -6,18 +6,20 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:11:25 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 05:24:24 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 14:02:45 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENUM_H
 # define ENUM_H
+
 # define WIDTH 800
 # define HEIGHT 600
-# define MAP_SIZE 10
-# define FOV M_PI / 3
+
+# define FOV 1.047198 //M_PI / 3
 # define RAY_STEP 0.01
-# define ANGLE_STEP FOV / WIDTH;
+# define ANGLE_STEP 0.001309  //FOV / WIDTH
+
 # define MOVE_SPEED 0.05 //0.05 0.15
 # define TURN_SPEED 0.03 //0.5 0.3
 
@@ -36,6 +38,14 @@
 	ERR_EXIT
 
 */
+
+//side icin koy
+typedef enum s_side
+{
+	X_AXIS,
+	Y_AXIS
+	
+} t_side;
 typedef enum s_err //
 {
 	ERR_AC,

@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 02:27:59 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 14:43:10 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ void	raycast(t_game *game)
 	{
 		init_ray(game, &ray, angle);
 		calculate_step_and_dist(game, &ray);
-		while (ray.hit == 0)
-		{
-			ray_step(&ray);
-			if (is_hit(&ray, game))
-				ray.hit = 1;
-		}
 		calculate_perpetual(game, &ray, angle);
 		determine_texture(game, &ray, angle);
 		calculate_texture_x(game, &ray, angle);

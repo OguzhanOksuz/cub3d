@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:37:19 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 00:38:07 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 09:25:25 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	init_win(t_game *game)
 	game->player.dir = M_PI / 4;
 	set_dir(game, game->data->dir);
 	game->debug = 0;
-	game->player.speed = 0.05;
 	game->key = -1;
 	game->map_size = game->data->map_width;
 	game->img.img = mlx_new_image(game->mlx, 800, 600);

@@ -6,14 +6,13 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:03:46 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 02:22:43 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 10:29:36 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 //init ray struct
-//1e30 to avoid divison by zero
 void	init_ray(t_game *game, t_ray *ray, double angle)
 {
 	ray->ray_dir.x = cos(angle);
@@ -60,7 +59,7 @@ void	clearimg(t_game *game)
 	}
 }
 
-void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_txt_data *data, int x, int y, int color)
 {
 	char	*dst;
 	int		offset;
