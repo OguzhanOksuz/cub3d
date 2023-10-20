@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:11:25 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 14:02:45 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:58:40 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define RAY_STEP 0.01
 # define ANGLE_STEP 0.001309  //FOV / WIDTH
 
-# define MOVE_SPEED 0.05 //0.05 0.15
+# define MOVE_SPEED 0.03 //0.05 0.15
 # define TURN_SPEED 0.03 //0.5 0.3
 
 /*

@@ -6,13 +6,17 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 15:50:37 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:48:48 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 //calculate x,y step and nearest x,y distances
+//ray->ray_dir.x < 0 left
+//ray->ray_dir.y < 0 up
+//side_dist distance between next map grid
+//0.6 -> 0.4
 void	calculate_step_and_dist(t_game *game, t_ray *ray)
 {
 	if (ray->ray_dir.x < 0)
@@ -25,7 +29,7 @@ void	calculate_step_and_dist(t_game *game, t_ray *ray)
 		ray->step_x = 1;
 		ray->side_dist.x = (ray->map_x + 1.0 - game->player.x) * ray->delta_dist.x;
 	}
-
+	
 	if (ray->ray_dir.y < 0)
 	{
 		ray->step_y = -1;
@@ -38,7 +42,15 @@ void	calculate_step_and_dist(t_game *game, t_ray *ray)
 	}
 }
 
+double min(double d1, double d2)
+{
+	if (d1 < d2)
+		return d1;
+	return d2;
+}
+
 //perp distance
+//one step back because we are inside of the wall
 void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
 {
 	while (ray->hit == 0)
@@ -48,9 +60,9 @@ void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
 			ray->hit = 1;
 	}
 	if (ray->side == 0)
-		ray->perp_wall_dist = (ray->map_x - game->player.x + (1 - ray->step_x) / 2) / ray->ray_dir.x;
+		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
 	else
-		ray->perp_wall_dist = (ray->map_y - game->player.y + (1 - ray->step_y) / 2) / ray->ray_dir.y;
+		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;	
 }
 
 //Assign the texture based on the wall hit
