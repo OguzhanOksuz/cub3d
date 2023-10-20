@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:11:25 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/19 18:58:40 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/20 22:54:55 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define RAY_STEP 0.01
 # define ANGLE_STEP 0.001309  //FOV / WIDTH
 
-# define MOVE_SPEED 0.03 //0.05 0.15
-# define TURN_SPEED 0.03 //0.5 0.3
+# define MOVE_SPEED 0.15 //0.05 0.15
+# define TURN_SPEED 0.05 //0.5 0.3
 
 /*
 *
@@ -42,8 +42,8 @@
 //side icin koy
 typedef enum s_side
 {
-	X_AXIS,
-	Y_AXIS
+	EAST_WEST,
+	NORTH_SOUTH
 	
 } t_side;
 typedef enum s_err //

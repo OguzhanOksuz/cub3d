@@ -6,13 +6,17 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:02:09 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 02:25:51 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/21 00:27:25 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 //Calculate the start and end points of the line on the screen
+// if (line_end > HEIGHT || line_end < 0)
+	// 	line_end = HEIGHT;
+	// if (line_start < 0 || line_start > HEIGHT)
+	// 	line_start = 0;
 void	draw_textured_line(t_game *game, t_ray *ray, int x, int line_height)
 {
 	int				line_start;
@@ -22,11 +26,7 @@ void	draw_textured_line(t_game *game, t_ray *ray, int x, int line_height)
 	int				tex_y;
 
 	line_start = (HEIGHT - line_height) / 2;
-	if (line_start < 0 || line_start > HEIGHT)
-		line_start = 0;
 	line_end = (HEIGHT + line_height) / 2;
-	if (line_end > HEIGHT || line_end < 0)
-		line_end = HEIGHT;
 	y = line_start;
 	while (++y < line_end)
 	{
@@ -38,6 +38,8 @@ void	draw_textured_line(t_game *game, t_ray *ray, int x, int line_height)
 
 // Calculate the memory offset for the desired pixel in the texture and
 // Extract the color from the texture using the offset
+// row
+// column
 unsigned int	get_pixel_color(int tex_y, t_ray *ray)
 {
 	unsigned int	pixel_color;
@@ -53,18 +55,7 @@ unsigned int	get_pixel_color(int tex_y, t_ray *ray)
 
 // Calculate the proportion of y within the line_height
 // and scale it by texture_height
-// and ensure it is within the bounds of the texture
-/**
- * Calculate the y-coordinate in a texture that corresponds 
- * to a y-coordinate on the screen.
- * 
- * @param y           The y-coordinate on the screen.
- * @param ray         The ray information containing texture details.
- * @param line_height The height of the line segment being 
- * rendered on the screen.
- * 
- * @return The corresponding y-coordinate on the texture.
- */
+// and ensure it is within the bounds of the texture (commented)
 int	get_tex_y(int y, t_ray *ray, int line_height)
 {
 	double	tmp;

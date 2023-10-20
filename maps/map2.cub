@@ -1,7 +1,7 @@
-NO ./assests/textures/brick.xpm
-SO ./assests/textures/brick.xpm
-EA ./assests/textures/brick.xpm
-WE ./assests/textures/brick.xpm
+NO ./assests/textures/KU.xpm
+SO ./assests/textures/GU.xpm
+EA ./assests/textures/DO.xpm
+WE ./assests/textures/BA.xpm
 
 F 120,80,10
 C 0,80,160

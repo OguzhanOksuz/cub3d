@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/20 13:48:48 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/21 00:27:15 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,6 @@ void	calculate_step_and_dist(t_game *game, t_ray *ray)
 	}
 }
 
-double min(double d1, double d2)
-{
-	if (d1 < d2)
-		return d1;
-	return d2;
-}
-
 //perp distance
 //one step back because we are inside of the wall
 void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
@@ -59,7 +52,7 @@ void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
 		if (is_hit(ray, game))
 			ray->hit = 1;
 	}
-	if (ray->side == 0)
+	if (ray->side == EAST_WEST)
 		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
 	else
 		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;	
@@ -70,7 +63,7 @@ void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
 //side == 1 -> // If the ray hit a wall on the y-axis (North/South wall)
 void	determine_texture(t_game *game, t_ray *ray, double angle)
 {
-	if (ray->side == 0)
+	if (ray->side == EAST_WEST)
 	{
 		if (ray->ray_dir.x > 0)
 			ray->texture = &(game->textures[EAST]);
@@ -91,7 +84,7 @@ void	calculate_texture_x(t_game *game, t_ray *ray, double angle)
 {
 	double	wall_x;
 
-	if (ray->side == 0)
+	if (ray->side == EAST_WEST)
 		wall_x = game->player.y + ray->perp_wall_dist * ray->ray_dir.y;
 	else
 		wall_x = game->player.x + ray->perp_wall_dist * ray->ray_dir.x;
@@ -101,6 +94,7 @@ void	calculate_texture_x(t_game *game, t_ray *ray, double angle)
 }
 
 //mirror check
+//WEST or SOUTH
 void	fix_mirror(t_ray *ray)
 {
 	if ((ray->side == 0 && ray->ray_dir.x < 0)

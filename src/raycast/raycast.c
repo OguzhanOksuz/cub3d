@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 15:44:37 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/20 22:37:01 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	raycast(t_game *game)
 		angle += ANGLE_STEP;
 	}
 }
-//printf("PERPETUAL: %f LINE_HEIGHT: %d \n", ray.perp_wall_dist, line_height);
 
 //take one step
 void	ray_step(t_ray *ray)
@@ -45,13 +44,13 @@ void	ray_step(t_ray *ray)
 	{
 		ray->side_dist.x += ray->delta_dist.x;
 		ray->map_x += ray->step_x;
-		ray->side = 0;
+		ray->side = EAST_WEST;
 	}
 	else
 	{
 		ray->side_dist.y += ray->delta_dist.y;
 		ray->map_y += ray->step_y;
-		ray->side = 1;
+		ray->side = NORTH_SOUTH;
 	}
 }
 
