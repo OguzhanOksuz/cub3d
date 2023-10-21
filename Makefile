@@ -6,7 +6,7 @@
 #    By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 16:15:07 by mkaraden          #+#    #+#              #
-#    Updated: 2023/10/20 13:34:30 by mkaraden         ###   ########.fr        #
+#    Updated: 2023/10/21 20:33:41 by mkaraden         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC)  $(CFLAGS) $(CDEBUG) -c $< -o $@
 
 run: all
-	./$(NAME) ./maps/map2.cub
+	./$(NAME) ./maps/map3.cub
 
 clean:
 	rm -f $(OBJ)

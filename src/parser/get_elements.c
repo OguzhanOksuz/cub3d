@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 00:03:15 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/16 14:04:58 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/10/21 20:53:53 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,13 @@ void	got_them_all(t_game *game)
 		data_error(ERR_ELEM, game);
 }
 
+void tmp_free(t_game *game)
+{
+	if (game->data->tmp != 0)
+		free(game->data->tmp);
+	game->data->tmp = 0;
+}
+
 void	get_elements(t_game *game, int i)
 {
 	while (game->data->file[++i])
@@ -88,22 +95,23 @@ void	get_elements(t_game *game, int i)
 		if (word_counter(game->data->file[i]) != 2)
 			data_error(ERR_ELEM, game);
 		game->data->tmp = get_word(game, game->data->file[i], 1);
-		if (ft_strcmp(game->data->tmp, "NO") == 0)
+		if (ft_strcmp(game->data->tmp, "NO") == 0 && game->data->no == 0) //**
 			game->data->no = get_word(game, game->data->file[i], 2);
-		else if (ft_strcmp(game->data->tmp, "SO") == 0)
+		else if (ft_strcmp(game->data->tmp, "SO") == 0 && game->data->so == 0)
 			game->data->so = get_word(game, game->data->file[i], 2);
-		else if (ft_strcmp(game->data->tmp, "EA") == 0)
+		else if (ft_strcmp(game->data->tmp, "EA") == 0 && game->data->ea == 0)
 			game->data->ea = get_word(game, game->data->file[i], 2);
-		else if (ft_strcmp(game->data->tmp, "WE") == 0)
+		else if (ft_strcmp(game->data->tmp, "WE") == 0 && game->data->we == 0)
 			game->data->we = get_word(game, game->data->file[i], 2);
-		else if (ft_strcmp(game->data->tmp, "F") == 0)
+		else if (ft_strcmp(game->data->tmp, "F") == 0 && game->data->f == 0)
 			game->data->f = get_word(game, game->data->file[i], 2);
-		else if (ft_strcmp(game->data->tmp, "C") == 0)
+		else if (ft_strcmp(game->data->tmp, "C") == 0 && game->data->c == 0)
 			game->data->c = get_word(game, game->data->file[i], 2);
 		else
 			data_error(ERR_ELEM, game);
 		if (game->data->tmp != 0)
-			free(game->data->tmp);
+			tmp_free(game);
 	}
+	printf("%s\n%s\n%s\n%s\n%s\n%s\n",game->data->no,game->data->so,game->data->ea,game->data->we,game->data->f,game->data->c );
 	got_them_all(game);
 }

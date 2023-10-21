@@ -1,9 +1,15 @@
-NO ./assests/textures/KU.xpm
-SO ./assests/textures/GU.xpm
-EA ./assests/textures/DO.xpm
-WE ./assests/textures/BA.xpm
+NO ./assests/textures/kanzee5.xpm
+NO ./assests/textures/kanzee5.xpm
+SO ./assests/textures/kanzee2.xpm
+SO ./assests/textures/kanzee2.xpm
+EA ./assests/textures/kanzee3.xpm
+EA ./assests/textures/kanzee3.xpm
+WE ./assests/textures/kanzee4.xpm
+WE ./assests/textures/kanzee4.xpm
 
 F 120,80,10
+F 120,80,10
+C 0,80,160
 C 0,80,160
 
 
