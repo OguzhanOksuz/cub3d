@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:13:00 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 15:50:23 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 02:32:16 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int				key_hook(int key, t_game *game);
 int				ft_press(int key, t_game *game);
 int				ft_release(int key, t_game *game);
 void			ft_move(t_player player, int dir, t_game *game);
-void			ft_collision(double new_x, double new_y,
+void			ft_move_fr(t_player *player, int dir, t_game *game); //*
+int				is_collide(double new_x, double new_y,
 					t_player *player, char **map);
 void			ft_turn(t_player *player, int dir);
 void			routine(t_game *game);
@@ -43,6 +44,8 @@ char			*dtoa(double value);
 //unitls 				//-ozi
 void			ft_error(int err, void *ptr);	//-ozi
 void			data_error(int err, t_game *game);
+
+void			cross_handler(t_game *game);
 
 //-------------RAYCAST--------------------//
 

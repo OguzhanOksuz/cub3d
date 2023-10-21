@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/21 00:27:15 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 02:28:56 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	calculate_step_and_dist(t_game *game, t_ray *ray)
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist.x = (ray->map_x + 1.0 - game->player.x) * ray->delta_dist.x;
+		ray->side_dist.x = (ray->map_x + 1.0 - game->player.x);
+		ray->side_dist.x *= ray->delta_dist.x;
 	}
-	
 	if (ray->ray_dir.y < 0)
 	{
 		ray->step_y = -1;
@@ -38,7 +38,8 @@ void	calculate_step_and_dist(t_game *game, t_ray *ray)
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist.y = (ray->map_y + 1.0 - game->player.y) * ray->delta_dist.y;
+		ray->side_dist.y = (ray->map_y + 1.0 - game->player.y);
+		ray->side_dist.y *= ray->delta_dist.y;
 	}
 }
 
@@ -55,7 +56,7 @@ void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
 	if (ray->side == EAST_WEST)
 		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
 	else
-		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;	
+		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;
 }
 
 //Assign the texture based on the wall hit

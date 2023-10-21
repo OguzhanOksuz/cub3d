@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 00:03:15 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/10/21 20:53:53 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 02:25:36 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	got_them_all(t_game *game)
 		data_error(ERR_ELEM, game);
 }
 
-void tmp_free(t_game *game)
+void	tmp_free(t_game *game)
 {
 	if (game->data->tmp != 0)
 		free(game->data->tmp);
@@ -95,7 +95,7 @@ void	get_elements(t_game *game, int i)
 		if (word_counter(game->data->file[i]) != 2)
 			data_error(ERR_ELEM, game);
 		game->data->tmp = get_word(game, game->data->file[i], 1);
-		if (ft_strcmp(game->data->tmp, "NO") == 0 && game->data->no == 0) //**
+		if (ft_strcmp(game->data->tmp, "NO") == 0 && game->data->no == 0)
 			game->data->no = get_word(game, game->data->file[i], 2);
 		else if (ft_strcmp(game->data->tmp, "SO") == 0 && game->data->so == 0)
 			game->data->so = get_word(game, game->data->file[i], 2);
@@ -112,6 +112,5 @@ void	get_elements(t_game *game, int i)
 		if (game->data->tmp != 0)
 			tmp_free(game);
 	}
-	printf("%s\n%s\n%s\n%s\n%s\n%s\n",game->data->no,game->data->so,game->data->ea,game->data->we,game->data->f,game->data->c );
 	got_them_all(game);
 }

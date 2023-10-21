@@ -6,11 +6,16 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:20:05 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/10/07 02:37:19 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 02:38:15 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	cross_handler(t_game *game)
+{
+	data_error(ERR_EXIT, game);
+}
 
 void	char_arr_free(char **arr)
 {

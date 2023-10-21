@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 12:31:16 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 05:12:35 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 02:20:31 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_stats(t_game *game)
 	if (!(game->debug))
 		return ;
 	printf("\n\n--OMG Stats--\n\n");
-	printf("dir = %f\n", game->player.dir);
+	printf("dir = %f\n", (game->player.dir));
 	printf("\n-----XYZ------\n");
 	printf("dir_x = %f\n", cos(game->player.dir));
 	printf("dir_y = %f\n", sin(game->player.dir));

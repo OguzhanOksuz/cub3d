@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   re_format_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 17:53:32 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/16 20:03:28 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/10/21 22:40:53 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ void	expend_width(t_game *game)
 	while (++i < game->data->map_height)
 	{
 		tmp[i] = (char *)malloc(sizeof(char) * (game->data->map_height + 1));
-		if (!tmp)
+		if (!tmp[i])
 			err_arr_special(game, tmp, i);
 		j = -1;
 		while (game->data->map[i][++j])
 			tmp[i][j] = game->data->map[i][j];
-		while (i < game->data->map_height)
+		while (j < game->data->map_height)
 			tmp[i][j++] = '1';
 		tmp[i][j] = 0;
 		free(game->data->map[i]);

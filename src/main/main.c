@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:38:07 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/21 20:10:53 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 02:32:30 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 	init_stuff(game);
 	mlx_hook(game->win, 2, 0, ft_press, game);
 	mlx_hook(game->win, 3, 0, ft_release, game);
-	mlx_hook(game->win, 17, 1L << 2, data_error, game);
+	mlx_hook(game->win, 17, 1L << 2, cross_handler, game);
 	mlx_loop_hook(game->mlx, &ft_loop, game);
 	mlx_loop(game->mlx);
 	return (0);
@@ -51,6 +51,24 @@ int	key_hook(int key, t_game *game)
 		data_error(ERR_EXIT, game);
 	routine(game);
 	return (0);
+}
+
+//update dir and keep the angle between 0 and 2π
+//0.1
+void	ft_turn(t_player *player, int dir)
+{
+	if (dir == WEST)
+	{
+		player->dir -= TURN_SPEED;
+		if (player->dir < 0)
+			player->dir += 2 * M_PI;
+	}
+	if (dir == EAST)
+	{
+		player->dir += TURN_SPEED;
+		if (player->dir > 2 * M_PI)
+			player->dir -= 2 * M_PI;
+	}
 }
 
 int	ft_loop(t_game *game)

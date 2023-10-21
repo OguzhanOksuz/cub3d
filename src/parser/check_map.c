@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 21:32:19 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/16 12:50:16 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/10/22 02:34:01 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,15 @@ void	check_top_wall(t_game *game, int flag_start, int flag_end)
 void	check_bottom_wall(t_game *game)
 {
 	int		i;
+	int		j;
 	char	ocr;
 
+	j = 0;
+	while (game->data->map[j] != 0)
+		j++;
+	j--;
 	i = -1;
-	while (game->data->map[++i])
+	while (game->data->map[j][++i] != 0)
 	{
 		ocr = get_bottom(game->data->map, i);
 		if (ocr != '1' && ocr != ' ')

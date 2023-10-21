@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:11:25 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/21 20:11:25 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 02:38:44 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define MOVE_SPEED 0.05 //0.05 0.15
 # define TURN_SPEED 0.03 //0.5 0.3
+# define OFFSET 0.6
 
 /*
 *
@@ -44,8 +45,8 @@ typedef enum s_side
 {
 	EAST_WEST,
 	NORTH_SOUTH
-	
-} t_side;
+}	t_side;
+
 typedef enum s_err //
 {
 	ERR_AC,

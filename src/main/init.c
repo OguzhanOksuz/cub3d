@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:37:19 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/07 09:25:25 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/21 23:55:37 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	init_win(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
-	game->player.x = game->data->y;
-	game->player.y = game->data->x;
+	game->player.x = game->data->y + 0.5;
+	game->player.y = game->data->x + 0.5;
 	game->player.dir = M_PI / 4;
 	set_dir(game, game->data->dir);
 	game->debug = 0;

@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:25:07 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/10/07 02:42:12 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/21 22:41:53 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	debug_data(t_data *data)
 		printf("%s", data->file[i]);
 	printf("\nmap\n");
 	i = -1;
-	while (data->map[i])
+	while (data->map[++i])
 		printf("%s\n", data->map[i]);
 	printf("\n--------\n");
 	printf("NO = %s\n", data->no);
