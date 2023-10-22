@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:20:54 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/07/31 15:21:54 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/07 05:24:34 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "../mlx/mlx.h"
 # include "../src/gnl/get_next_line.h"
 
-#include "enum.h"
-#include "struct.h"
+# include "enum.h"
+# include "struct.h"
 
 #endif

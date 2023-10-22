@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 23:06:38 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/02/18 21:06:43 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 02:57:25 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #  define BUFFER_SIZE 13
 # endif
 
-size_t	ft_strlen(char *str);
+int		ft_strlen(char *str);
 size_t	ft_strlcpy(char	*dst, char *src, size_t	dstsize);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_line(char *str);

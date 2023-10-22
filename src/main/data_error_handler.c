@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   data_error_handler.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ooksuz <ooksuz@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:20:05 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/08/16 17:49:40 by ooksuz           ###   ########.fr       */
+/*   Updated: 2023/10/22 03:05:56 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	cross_handler(void *game)
+{
+	data_error(ERR_EXIT, (t_game *)(game));
+	return (1);
+}
 
 void	char_arr_free(char **arr)
 {
@@ -32,7 +38,7 @@ void	free_data(t_data *data)
 {
 	if (data)
 	{
-		if (data->file !=  0)
+		if (data->file != 0)
 			char_arr_free(data->file);
 		if (data->map != 0)
 			char_arr_free(data->map);
@@ -54,6 +60,7 @@ void	free_data(t_data *data)
 	}
 }
 
+//system("leaks cub3d");
 void	data_error(int err, t_game *game)
 {
 	if (err == ERR_AC)
@@ -74,6 +81,8 @@ void	data_error(int err, t_game *game)
 		write(2, "Invalid file!\n", 14);
 	else if (err == ERR_READ)
 		write(2, "File could not be read!\n", 24);
+	else if (err == ERR_EXIT)
+		write(1, "Pressed esc\n", 12);
 	free_data(game->data);
 	free(game);
 	exit(1);
