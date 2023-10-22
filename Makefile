@@ -6,7 +6,7 @@
 #    By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 16:15:07 by mkaraden          #+#    #+#              #
-#    Updated: 2023/10/21 20:33:41 by mkaraden         ###   ########.fr        #
+#    Updated: 2023/10/22 02:53:41 by mkaraden         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ RM	= rm -f
 
 CC		= gcc
 CFLAGSA	= -I ./include/ -fsanitize=address
-CFLAGS	= -I ./include/ 
+CFLAGS	= -I ./include/ -Wall -Wextra -Werror
 CDEBUG	= -g 
 FRMS	=	-framework OpenGL -framework AppKit
 

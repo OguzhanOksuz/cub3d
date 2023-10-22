@@ -6,15 +6,16 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:20:05 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/10/22 02:38:15 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 03:05:56 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	cross_handler(t_game *game)
+int	cross_handler(void *game)
 {
-	data_error(ERR_EXIT, game);
+	data_error(ERR_EXIT, (t_game *)(game));
+	return (1);
 }
 
 void	char_arr_free(char **arr)
@@ -59,6 +60,7 @@ void	free_data(t_data *data)
 	}
 }
 
+//system("leaks cub3d");
 void	data_error(int err, t_game *game)
 {
 	if (err == ERR_AC)
@@ -83,6 +85,5 @@ void	data_error(int err, t_game *game)
 		write(1, "Pressed esc\n", 12);
 	free_data(game->data);
 	free(game);
-	system("leaks cub3d");
 	exit(1);
 }

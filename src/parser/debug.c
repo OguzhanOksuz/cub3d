@@ -6,12 +6,13 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:25:07 by ooksuz            #+#    #+#             */
-/*   Updated: 2023/10/21 22:41:53 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 03:06:08 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//system("leaks cub3d");
 void	debug_data(t_data *data)
 {
 	int	i;
@@ -38,5 +39,4 @@ void	debug_data(t_data *data)
 	printf("floor = %d\n", data->floor);
 	printf("ceiling = %d\n", data->ceiling);
 	printf("\n-------------\n");
-	system("leaks cub3d");
 }

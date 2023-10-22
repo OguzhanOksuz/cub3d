@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:00:43 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/22 02:28:56 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 02:58:27 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	calculate_step_and_dist(t_game *game, t_ray *ray)
 
 //perp distance
 //one step back because we are inside of the wall
-void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
+void	calculate_perpetual(t_game *game, t_ray *ray)
 {
 	while (ray->hit == 0)
 	{
@@ -62,7 +62,7 @@ void	calculate_perpetual(t_game *game, t_ray *ray, double angle)
 //Assign the texture based on the wall hit
 //side == 0 -> // If the ray hit a wall on the x-axis (East/West wall)
 //side == 1 -> // If the ray hit a wall on the y-axis (North/South wall)
-void	determine_texture(t_game *game, t_ray *ray, double angle)
+void	determine_texture(t_game *game, t_ray *ray)
 {
 	if (ray->side == EAST_WEST)
 	{
@@ -81,7 +81,7 @@ void	determine_texture(t_game *game, t_ray *ray, double angle)
 }
 
 //slack de resmi var
-void	calculate_texture_x(t_game *game, t_ray *ray, double angle)
+void	calculate_texture_x(t_game *game, t_ray *ray)
 {
 	double	wall_x;
 

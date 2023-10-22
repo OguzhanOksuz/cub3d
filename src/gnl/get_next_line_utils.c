@@ -6,15 +6,15 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 23:06:32 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/02/18 21:06:15 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 02:56:55 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!str)

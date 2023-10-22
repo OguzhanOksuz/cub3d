@@ -6,7 +6,7 @@
 /*   By: mkaraden <mkaraden@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:23:34 by mkaraden          #+#    #+#             */
-/*   Updated: 2023/10/22 02:25:03 by mkaraden         ###   ########.fr       */
+/*   Updated: 2023/10/22 02:58:34 by mkaraden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	raycast(t_game *game)
 	{
 		init_ray(game, &ray, angle);
 		calculate_step_and_dist(game, &ray);
-		calculate_perpetual(game, &ray, angle);
-		determine_texture(game, &ray, angle);
-		calculate_texture_x(game, &ray, angle);
+		calculate_perpetual(game, &ray);
+		determine_texture(game, &ray);
+		calculate_texture_x(game, &ray);
 		ray.perp_wall_dist *= cos(game->player.dir - angle);
 		line_height = safe_divide(HEIGHT, ray.perp_wall_dist);
 		draw_textured_line(game, &ray, x, line_height);
